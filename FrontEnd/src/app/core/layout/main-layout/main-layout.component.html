@@ -1,0 +1,27 @@
+<!-- <div class="page-wrapper">
+ <app-header></app-header>
+    <div class="page-content">
+    <div>
+      <app-side-bar></app-side-bar>
+    </div>
+
+    <div class="main-content" [ngClass]="smallSideBar? 'w-min-sidebar':'w-lg-sidebar'">
+      <router-outlet></router-outlet>
+    </div>
+
+    </div>
+    <app-footer></app-footer>
+ </div> -->
+
+
+ <div class="page-wrapper">
+  <app-header></app-header>
+     <div class="page-content">
+     <div class="main-content">
+       <router-outlet></router-outlet>
+     </div>
+     </div>
+     <app-footer></app-footer>
+  </div>
+
+

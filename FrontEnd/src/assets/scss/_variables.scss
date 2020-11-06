@@ -1,0 +1,85 @@
+:root {
+    
+    --background-header : rgba(22,42,52,1) ;
+    --background-light :  rgba(68,163,197,1);
+    --background-white :  #FFFFFF  ;
+    --background-sidebarArrow:#31454d;
+    --Vprimary:  #7f0009 !important;
+    --background-overlay :  rgba(6, 31, 43, 0.8);  
+    --gray:#e0e0e0;
+    --main-color:#5a5a5a;
+    --color-dark :  #31454e  ;
+    --color-light :  #31454e  ;
+
+    --font-color-light: rgba(255, 255, 255, 0.6);
+    --error-default :  #EF3E36  ;
+    --error-dark :  #800600  ;
+    --error-light :  #FFCECC  ;
+
+    --background-tertiary-shadow :  0 1px 3px 0 rgba(92, 125, 153, 0.5) 
+}
+
+ 
+$secondary: #132832 ;
+$lightGray: rgba(255, 255, 255, 0.6);
+$offwhite: #f8f9fa;
+$white: #ffffff;
+$input-btn-focus-width: 0;
+$transparent: transparent;
+$borderColor: #e0e0e0;
+$error :  #EF3E36  ;
+
+// mixin
+//@include transition(background-color 1s .5s, color 2s);
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+// Font size Base
+$font-size-base:  .8rem; // Assumes the browser default, typically `16px`
+
+// Breadcrumbs
+$breadcrumb-bg:                     $transparent;
+/*
+$breadcrumb-padding-y:              .75rem !default;
+$breadcrumb-padding-x:              1rem !default;
+$breadcrumb-item-padding:           .5rem !default;
+
+$breadcrumb-margin-bottom:          1rem !default;
+
+$breadcrumb-divider-color:          $gray-600 !default;
+$breadcrumb-active-color:           $gray-600 !default;
+$breadcrumb-divider:                quote( / ) !default;
+
+$breadcrumb-border-radius:          $border-radius !default;
+*/
+
+/*
+###### Theme Colors
+// $primary:       $blue !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+// Modify map
+$theme-colors: (
+   // primary : #0074d9,
+   danger : #ff4136
+);
+
+// Add to map
+$theme-colors: (
+   custom-color : #900
+);
+// Remove from map
+// $theme-colors: map-remove($theme-colors,  success ,  info ,  danger );
+
+*/

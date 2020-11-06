@@ -1,0 +1,17 @@
+@import "./../../../../assets/scss/variables.scss";
+
+.app-footer{
+  padding:0 20px;
+  float: right;
+  .copyright {
+    color: var(--main-color);
+
+    margin-right: 5px;
+  }
+  img{
+    height: 30px;
+    margin-top: 8px;
+
+
+  }
+}

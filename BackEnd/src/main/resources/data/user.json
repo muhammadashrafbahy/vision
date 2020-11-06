@@ -1,0 +1,16 @@
+[
+  { "fullName": "user1",
+    "userName": "username1",
+    "password": "passwd1",
+    "image": "path1",
+    "privilegeN": 1,
+    "userEmail": "email1"}
+    ,
+  { "fullName": "user2",
+    "userName": "username2",
+    "password": "passwd2",
+    "image": "path2",
+    "privilegeN": 2,
+    "userEmail": "email2"}
+
+]

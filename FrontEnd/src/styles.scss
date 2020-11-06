@@ -1,13 +1,126 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
+@import "../src/assets/lib/animate/animate.css";
+
 @import "../src/assets/scss/variables";
 
 
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-
+// html,body,*{direction: rtl;}
 body{
     background: #f7f7f7;
     font-family: 'Cairo', sans-serif;
 
+
 }
+.page-content{
+    padding-top: 120px;
+}
+
+.carousel-control-prev, .carousel-control-next{
+    background:var(--Vprimary) !important;
+    width: 50px !important;
+    height: 50px !important;
+    top: 40% !important;
+}
+
+/*Ribon */
+.ribbon {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 999;
+  }
+  .ribbon::before,
+  .ribbon::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid var(--Vprimary);
+  }
+  .ribbon span {
+    position: absolute;
+    display: block;
+    width: 225px;
+    padding: 15px 0;
+    background-color: var(--Vprimary);
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    color: #fff;
+    font: 700 18px/1 'Lato', sans-serif;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  /* top left*/
+  .ribbon-top-left {
+    top: -10px;
+    left: -10px;
+  }
+  .ribbon-top-left::before,
+  .ribbon-top-left::after {
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+  .ribbon-top-left::before {
+    top: 0;
+    right: 0;
+  }
+  .ribbon-top-left::after {
+    bottom: 0;
+    left: 0;
+  }
+  .ribbon-top-left span {
+    right: -25px;
+    top: 30px;
+    transform: rotate(-45deg);
+  }
+  
+  /* top right*/
+  .ribbon-top-right {
+    top: -10px;
+    right: -10px;
+  }
+  .ribbon-top-right::before,
+  .ribbon-top-right::after {
+    border-top-color: transparent;
+    border-right-color: transparent;
+  }
+  .ribbon-top-right::before {
+    top: 0;
+    left: 0;
+  }
+  .ribbon-top-right::after {
+    bottom: 0;
+    right: 0;
+  }
+  .ribbon-top-right span {
+    left: -25px;
+    top: 30px;
+    transform: rotate(45deg);
+  }
+  
+  .overlayer{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,.7);
+  }
+  .main-button , .main-button:hover, .main-button:focus{
+   background-color: var(--Vprimary) !important;
+   border-color: var(--Vprimary) !important;
+   outline: none !important;
+   box-shadow:none !important;
+  }
+  a{
+    text-decoration: none;
+  }

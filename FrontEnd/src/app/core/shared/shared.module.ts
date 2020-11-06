@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [ConfirmDialogComponent, Filesize],
+  declarations: [ConfirmDialogComponent, Filesize ],
   imports: [
     CommonModule,
     ToastrModule.forRoot(),
@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+ 
   ],
   exports: [
      ConfirmDialogComponent],

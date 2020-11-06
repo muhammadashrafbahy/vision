@@ -5,12 +5,10 @@ import { CoreRoutingModule } from './core/core-routing.module';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './core/shared/shared.module';
-import { ProductsComponent } from './Shop/components/products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent
   ],
   imports: [
     BrowserModule,

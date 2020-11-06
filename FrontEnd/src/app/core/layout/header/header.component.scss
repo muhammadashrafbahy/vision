@@ -3,13 +3,10 @@
 .navbar {
   padding-top: 0;
   padding-bottom: 0;
-  position: fixed;
-  top: 0;
+   top: 0;
   width: 100%;
   z-index: 9;
-  position: fixed;
-  top:39px;
-  width:100%;
+   width:100%;
   background:  var(--Vprimary); 
   .navbar-brand {
     position: relative;
@@ -328,7 +325,8 @@ ul.navbar-nav {
   margin: 2px auto 0;
 
   input{
-    border-right: 1px solid var(--Vprimary) !important;
+    border-left: 1px solid var(--Vprimary) !important;
+    border-radius: 0;
   }
   input:focus{
     outline: 0;
@@ -364,6 +362,11 @@ ul.navbar-nav {
   list-style: none;
 }
 .header-main{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
 
   .top-header{
     background: #fff;

@@ -12,11 +12,11 @@
     </div> 
   </div>
   
-</div>
-<div class="clearfix"></div>
+
  <nav class="navbar navbar-expand">
   <a class="navbar-brand"  [ngClass]="smallSideBarFlag? '':'sidebarActive'">
-      <img class="logo img-fluid" src="../../../../assets/img/Jupiter-Cloud-wide-size.png">
+      <!-- <img class="logo img-fluid" src="../../../../assets/img/Jupiter-Cloud-wide-size.png"> -->
+   VISIONLOGO
     </a>
 
   <ul class="navbar-nav ml-auto">
@@ -35,10 +35,12 @@
     <!-- <li class="nav-item li-padding spreating d-none d-sm-block">
     </li> -->
     <li class="nav-item search-item li-padding">
-      <div class="input-group" id="search_box">
+      <div class="input-group flex-nowrap" id="search_box">
         <input type="text" class="form-control" placeholder="search Here .... " [(ngModel)]="searchText"> 
            <div class="input-group-button">
           <button id="searchButton" class="button primary expand" type="submit" name="button"><i class="fa fa-search"></i></button>
+          <button style="border-right: 1px solid;" id="filterButton" class="button primary expand" type="submit" name="button"><i class="fa fa-filter"></i></button>
+       
         </div>
     </div>
     </li> 
@@ -48,7 +50,7 @@
       <a id='badge-envelope' class="nav-link icon-hover" ngbDropdownToggle>
         
         <i class="fa fa-shopping-cart"></i>
-        <span *ngIf="cartItem.length > 0;else zeroNotfication" class="badge badge-animation">5</span>
+        <!-- <span *ngIf="cartItem.length > 0;else zeroNotfication" class="badge badge-animation">5</span> -->
         <!-- <ng-template #zeroNotfication>
           <span class="badge">0</span>
         </ng-template> -->
@@ -89,3 +91,5 @@
     </li>
   </ul> -->
 </nav> 
+</div>
+<div class="clearfix"></div>

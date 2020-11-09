@@ -15,10 +15,12 @@ import java.util.List;
 public class userService {
     private userRepository userRepository ;
     private userValidator userValidator;
-    private ModelMapper modelMapper;
+    private static final ModelMapper modelMapper =new ModelMapper();
+
     @Autowired
-    public userService(userRepository userRepository) {
+    public userService(userRepository userRepository , userValidator userValidator) {
         this.userRepository = userRepository;
+        this.userValidator =userValidator;
     }
 
 
@@ -39,10 +41,17 @@ public class userService {
      * @return user details
      */
     public user getAnUser(int userID){
+        user  u = null;
+        try {
+                u =this.userValidator.getValidUser(userID);
+                if (u == null){
 
-            try {
-                return  this.userValidator.getValidUser(userID);
+                    throw new userNotFound(userID);
+
+                }
+                return  u;
             }catch (Exception e){
+
                 throw new userNotFound(userID);
             }
 
@@ -81,7 +90,8 @@ public class userService {
             modelMapper.map(newUser ,oldUser);
             this.userRepository.save(oldUser);
         }catch (Exception e){
-            throw new userNotFound(userID);
+            System.out.println("yessssssssssssssss "+e.getMessage());
+            e.printStackTrace();
         }
 
     }

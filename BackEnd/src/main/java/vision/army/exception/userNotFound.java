@@ -11,7 +11,7 @@ public class userNotFound extends RuntimeException {
     private  int userID ;
 
     public userNotFound(int userID) {
-        super(String.format("the user whose id is %s is not found",userID));
+        super(String.format("the user with id is %s is not found",userID));
         this.userID = userID;
     }
 

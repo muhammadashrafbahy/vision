@@ -84,7 +84,8 @@ public void configure(AuthenticationManagerBuilder auth) throws Exception {
                             "/webjars/**",
                             "/swagger/**",
                             "/register/**",
-                            "/misroliaa/**");
+                            "/vision/**",
+            "/vision/user/**");
         }
     }
 }

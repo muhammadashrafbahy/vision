@@ -104,6 +104,8 @@ public class user {
     public void setPrivilegeN(int privilegeN) {
         this.privilegeN = privilegeN;
     }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

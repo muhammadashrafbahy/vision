@@ -26,7 +26,7 @@ public class register {
 
     @Transactional
     @ApiOperation(value = "create new user")
-    @PostMapping(value = "/user")
+    @PostMapping(value = "/user"    , consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createNewEmployee(@Valid @RequestBody user user ){
         this.userService.createAnUser(user);
 

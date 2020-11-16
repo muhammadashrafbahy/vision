@@ -1,7 +1,7 @@
 package vision.army.reprositery;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import vision.army.entity.user;
+import vision.army.entity.*;
 
 import java.util.Optional;
 

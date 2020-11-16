@@ -71,10 +71,10 @@ public class product {
     private int prdTypeMainID;
 
 
-        @OneToMany(cascade = CascadeType.REMOVE, targetEntity = productImage.class)
-    @JoinTable(name = "product_images" ,joinColumns = {@JoinColumn(name = "productID")}
-            ,inverseJoinColumns ={@JoinColumn(name   = "imageID")} )
-    private List<productImage> productImages;
+        @OneToMany(cascade = CascadeType.ALL, targetEntity = productImage.class)
+    @JoinTable(name = "Aproduct_images" ,joinColumns = {@JoinColumn(name = "product_ID")}
+            ,inverseJoinColumns ={@JoinColumn(name   = "image_ID")} )
+    private List<productImage> AproductImages;
 
 
     public int getProductID() {
@@ -166,11 +166,11 @@ public class product {
     }
 
     public List<productImage> getProductImages() {
-        return productImages;
+        return AproductImages;
     }
 
     public void setProductImages(List<productImage> productImages) {
-        this.productImages = productImages;
+        this.AproductImages = productImages;
     }
 
 

@@ -8,19 +8,22 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@JsonPropertyOrder({ "clientID   ", "productID", "reSaleDate", "reason"})
+@JsonPropertyOrder({  "productID", "reSaleDate", "reason","confirm"})
 
 public class resale {
     public resale() {super();    }
 
-    public resale(@JsonProperty("clientID")int clientID,
-                  @JsonProperty("productID")int productID,
+    public resale(@JsonProperty("productID")int productID,
                   @JsonProperty("reSaleDate")Date reSaleDate,
-                  @JsonProperty("reason")String reason) {
-        this.clientID = clientID;
+                  @JsonProperty("confirmDate")Date confirmDate,
+                  @JsonProperty("reason")String reason,
+                  @JsonProperty("confirm")boolean confirm) {
+
         this.productID = productID;
         this.reSaleDate = reSaleDate;
         this.reason = reason;
+        this.confirm=confirm;
+        this.confirmDate =confirmDate;
     }
 
     @Id
@@ -29,13 +32,16 @@ public class resale {
     private int reSaleID;
 
     @Column( nullable = false)
-    private int clientID;
-
-    @Column( nullable = false)
     private int productID;
 
     @Column( nullable = false)
     private Date reSaleDate;
+
+    @Column( nullable = false)
+    private Date confirmDate;
+
+    @Column( nullable = false)
+    private boolean confirm;
 
     private String reason;
 
@@ -45,14 +51,6 @@ public class resale {
 
     public void setReSaleID(int reSaleID) {
         this.reSaleID = reSaleID;
-    }
-
-    public int getClientID() {
-        return clientID;
-    }
-
-    public void setClientID(int clientID) {
-        this.clientID = clientID;
     }
 
     public int getProductID() {
@@ -77,6 +75,22 @@ public class resale {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public Date getConfirmDate() {
+        return confirmDate;
+    }
+
+    public void setConfirmDate(Date confirmDate) {
+        this.confirmDate = confirmDate;
+    }
+
+    public boolean isConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(boolean confirm) {
+        this.confirm = confirm;
     }
 
     @Override

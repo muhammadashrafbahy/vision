@@ -7,16 +7,15 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@JsonPropertyOrder({ "clientID   ", "lng", "lat"})
+@JsonPropertyOrder({ "lng", "lat"})
 
 public class clientLocation {
 
     public clientLocation() {super();    }
 
-    public clientLocation(@JsonProperty("clientID")int clientID,
-                          @JsonProperty("lng")double lng,
+    public clientLocation(@JsonProperty("lng")double lng,
                           @JsonProperty("lat")double lat) {
-        this.clientID = clientID;
+
         this.lng = lng;
         this.lat = lat;
     }
@@ -26,8 +25,6 @@ public class clientLocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int clLocationID ;
 
-    @Column( nullable = false)
-    private int clientID;
 
     @Column( nullable = false)
     private double lng;
@@ -43,13 +40,7 @@ public class clientLocation {
         this.clLocationID = clLocationID;
     }
 
-    public int getClientID() {
-        return clientID;
-    }
 
-    public void setClientID(int clientID) {
-        this.clientID = clientID;
-    }
 
     public double getLng() {
         return lng;

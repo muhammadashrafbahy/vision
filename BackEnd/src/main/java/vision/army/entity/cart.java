@@ -8,18 +8,17 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@JsonPropertyOrder({ "clientID   ", "productID", "confirm",
+@JsonPropertyOrder({ "productID", "confirm",
         "cartDate", "confirmDate"})
 public class cart {
     public cart() {super();    }
 
 
-    public cart(@JsonProperty("clientID")int clientID,
-                @JsonProperty("productID")int productID,
+    public cart(@JsonProperty("productID")int productID,
                 @JsonProperty("confirm")boolean confirm,
                 @JsonProperty("cartDate")Date cartDate,
                 @JsonProperty("confirmDate")Date confirmDate) {
-        this.clientID = clientID;
+
         this.productID = productID;
         this.confirm = confirm;
         this.cartDate = cartDate;
@@ -30,9 +29,6 @@ public class cart {
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cartID;
-
-    @Column( nullable = false)
-    private int clientID;
 
     @Column( nullable = false)
     private int productID;
@@ -53,13 +49,6 @@ public class cart {
         this.cartID = cartID;
     }
 
-    public int getClientID() {
-        return clientID;
-    }
-
-    public void setClientID(int clientID) {
-        this.clientID = clientID;
-    }
 
     public int getProductID() {
         return productID;

@@ -34,18 +34,18 @@ public class userValidator {
 
     /**
      * return true if  user already exist in the database
-     * @param userID the given user
+     * @param userName the given user
      * @return true or false
      */
 
-    public boolean checkExistOfUserForCreation(int userID) {
-        user user = this.userRepository.findById(userID).orElse(null);
+    public boolean checkExistOfUserForCreation(String userName) {
+        user user = this.userRepository.findByuserName(userName).orElse(null);
         if (user == null){
 
             return false;
         }else {
 
-            return true;
+            throw new userAlreadyExist(userName);
         }
     }
 }

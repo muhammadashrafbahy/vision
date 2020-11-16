@@ -5,7 +5,7 @@ import vision.army.exception.*;
 import vision.army.service.validation.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -98,15 +98,15 @@ public class userService {
 
     /**
      * create new user in the database
-     * @param newUser the payload of the user to update
+     * @param newUser the payload of the user to add
 
      */
     public void createAnUser(user newUser){
             String enCodedPassword = new BCryptPasswordEncoder().encode(newUser.getPassword());
         newUser.setPassword(enCodedPassword);
-
-          this.userRepository.save(newUser);
-
+        if (this.userValidator.checkExistOfUserForCreation(newUser.getUserName())==false) {
+            this.userRepository.save(newUser);
+        }
 
     }
 

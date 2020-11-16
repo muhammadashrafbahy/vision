@@ -8,15 +8,15 @@ public class userAlreadyExist extends RuntimeException {
 
     private static final String errorNumber ="APP1-USER-ERROR-002";
 
-    private  int userID ;
+    private  String userName ;
 
-    public userAlreadyExist(int userID) {
-        super(String.format("the user whose id is %s is already exist ",userID));
-        this.userID = userID;
+    public userAlreadyExist(String userName) {
+        super(String.format("the user whose  user_name is %s is already exist ",userName));
+        this.userName = userName;
     }
 
-    public  int getUserID() {
-        return this.userID ;
+    public  String getUserName() {
+        return this.userName ;
     }
     public  String getErrorNumber() {
         return errorNumber;

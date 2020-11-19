@@ -1,0 +1,15 @@
+[
+  { "clientName": "clientName1",
+    "clientEmail": "clientEmail1",
+    "clientPassword": "clientPassword1",
+    "clientImage": "clientImage1",
+    "gender": "gender1",
+    "phone": "phone1"}
+    ,
+  { "clientName": "clientName2",
+    "clientEmail": "clientEmail2",
+    "clientPassword": "clientPassword2",
+    "clientImage": "clientImage2",
+    "gender": "gender2",
+    "phone": "phone2"}
+]

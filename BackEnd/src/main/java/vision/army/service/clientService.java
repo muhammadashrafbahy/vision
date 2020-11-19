@@ -83,6 +83,12 @@ public class clientService {
             this.clientRepository.delete(client);
         }
     }
+    /**
+     * delete all clients in the database
+     */
+    public void deleteAllClients( ) {
+        this.clientRepository.deleteAll();
+    }
 
 
         /**

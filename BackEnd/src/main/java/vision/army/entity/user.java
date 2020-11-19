@@ -33,7 +33,7 @@ public class user {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userID ;
 
-    @Column( nullable = false)
+
     private String fullName ;
 
     @Column( nullable = false)
@@ -46,7 +46,7 @@ public class user {
 
     private String userEmail;
 
-    @Column( nullable = false)
+
     private int privilegeN;
 
     public int getUserID() {

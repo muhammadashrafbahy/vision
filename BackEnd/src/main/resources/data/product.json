@@ -1,0 +1,25 @@
+[
+  { "prodName": "prodName1",
+    "prodPrice": 1,
+    "description": "description1",
+    "prdTypeID": 1,
+    "brandID": 1,
+    "state": "state1",
+    "rate": 1,
+    "salesNo": 1,
+    "itemNo": 1,
+    "prdTypeMainID": 1
+  }
+    ,
+  { "prodName": "prodName2",
+    "prodPrice": 2,
+    "description": "description2",
+    "prdTypeID": 2,
+    "brandID": 2,
+    "state": "state2",
+    "rate": 2,
+    "salesNo": 2,
+    "itemNo": 2,
+    "prdTypeMainID":2
+  }
+]

@@ -50,6 +50,12 @@ public class productService {
         }
     }
     /**
+     * delete all products in the database
+     */
+    public void deleteAllProduct( ) {
+        this.productRepository.deleteAll();
+    }
+    /**
      * list of all products
      * @return list of all products
      */

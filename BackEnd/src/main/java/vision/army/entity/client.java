@@ -74,10 +74,10 @@ public class client {
             ,inverseJoinColumns ={@JoinColumn(name   = "favourite_ID")} )
     private List<favourite> Fclient_favourite;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = order.class)
-    @JoinTable(name = "Oclient_order" ,joinColumns = {@JoinColumn(name = "client_ID")}
-            ,inverseJoinColumns ={@JoinColumn(name   = "order_ID")} )
-    private List<order> Oclient_order;
+    @OneToMany(cascade = CascadeType.REMOVE, targetEntity = orders.class)
+    @JoinTable(name = "ORclientorders" ,joinColumns = {@JoinColumn(name = "client_ID")}
+            ,inverseJoinColumns ={@JoinColumn(name   = "orders_ID")} )
+    private List<orders> Orclient_orders;
 
     public int getClientID() {
         return clientID;
@@ -175,12 +175,12 @@ public class client {
         Fclient_favourite = fclient_favourite;
     }
 
-    public List<order> getOclient_order() {
-        return Oclient_order;
+    public List<orders> getOrclient_orders() {
+        return Orclient_orders;
     }
 
-    public void setOclient_order(List<order> oclient_order) {
-        Oclient_order = oclient_order;
+    public void setOrclient_orders(List<orders> orclient_orders) {
+        Orclient_orders = orclient_orders;
     }
 
     @Override

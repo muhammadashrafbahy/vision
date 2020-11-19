@@ -12,5 +12,5 @@ public interface productRepository extends JpaRepository<product, Integer> {
     List<product> findAllByProdNameLike (String prodName);
     List<product> findALlByProdPriceBetween (int firstPrice , int secondPrice);
     List<product> findAllBySalesNoIsNotNullOrderBySalesNoDesc ();
-    List<product> findAllByRateIsNotNullOrderByRateDesc ();
+//    List<product> findAllByRateIsNotNullOrderByRateDesc ();
 }

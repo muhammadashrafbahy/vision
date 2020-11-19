@@ -9,11 +9,11 @@ import java.util.Objects;
 
 @Entity
 @JsonPropertyOrder({ "state", "deliverPeriod","deliverPrice", "deliverState"  , "productID"})
-public class order {
+public class orders {
 
-    public order() {    super();    }
+    public orders() {    super();    }
 
-    public order(@JsonProperty("state") boolean state,
+    public orders(@JsonProperty("state") boolean state,
                  @JsonProperty("productID") String productID,
                  @JsonProperty("deliverPeriod")String deliverPeriod,
                  @JsonProperty("deliverPrice")int deliverPrice,
@@ -27,7 +27,7 @@ public class order {
     @Id
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int orderID ;
+    private int ordersID ;
 
     @Column( nullable = false)
     private boolean state ;
@@ -42,13 +42,12 @@ public class order {
     @Column( nullable = false)
     private String  deliverState;
 
-
-    public int getOrderID() {
-        return orderID;
+    public int getOrdersID() {
+        return ordersID;
     }
 
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
+    public void setOrdersID(int ordersID) {
+        this.ordersID = ordersID;
     }
 
     public boolean isState() {
@@ -57,6 +56,14 @@ public class order {
 
     public void setState(boolean state) {
         this.state = state;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public String getDeliverPeriod() {
@@ -83,25 +90,17 @@ public class order {
         this.deliverState = deliverState;
     }
 
-    public int getProductID() {
-        return productID;
-    }
-
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        order or= (order) o;
-        return Objects.equals(or.orderID , or.orderID); }
+        orders or= (orders) o;
+        return Objects.equals(or.ordersID , or.ordersID); }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(orderID);
+        return Objects.hash(ordersID);
     }
 
 }

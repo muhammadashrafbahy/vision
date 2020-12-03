@@ -26,28 +26,28 @@ public class productImageService {
     public void createAnProductImageForProduct(int productID , productImage newProductImage){
 
         this.productImageRepository.save(newProductImage);
-//        product product = this.productService.getproductByID(productID);
-//        List<productImage> clproductImage = product.getFproduct_productImage();
-//        clproductImage.add(newProductImage);
-//        product.setFproduct_productImage(clproductImage);
-//        this.productService.updateproduct(productID ,product);
+        product product = this.productService.getProductByID(productID);
+        List<productImage> clProductImage = product.getProductImages();
+        clProductImage.add(newProductImage);
+        product.setProductImages(clProductImage);
+        this.productService.updateAnProduct(product ,productID);
 
     }
-//    /**
-//     * return list of productImage for given product according to productID
-//     * @param productID the id of the product
-//     * @return  list of productImage for given product
-//     */
-//    public List<productImage> getproductImageForproduct(int productID ){
-//        return this.productService.getproductByID(productID).getFproduct_productImage();
-//    }
+    /**
+     * return list of productImage for given product according to productID
+     * @param productID the id of the product
+     * @return  list of productImage for given product
+     */
+    public List<productImage> getProductImageForProduct(int productID ){
+        return this.productService.getProductByID(productID).getProductImages();
+    }
 
     /**
      * return  productImage for given id
      * @param productImageID the id of the product
      * @return  productImage
      */
-    public productImage getproductImageByID(int productImageID ){
+    public productImage getProductImageByID(int productImageID ){
         return this.productImageRepository.findById(productImageID).orElse(null);
     }
 

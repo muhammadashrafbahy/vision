@@ -28,10 +28,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Optional<user> user = userRepository.findByuserName(username);
-        customerUserDetails customerUserDetails =null;
-        if(user == null){
+        customerUserDetails customerUserDetails ;
+        if(user.orElse(null) == null){
             System.out.println(username+" is not found");
             throw new UsernameNotFoundException("Invalid username or password.");
+
 
         }
 

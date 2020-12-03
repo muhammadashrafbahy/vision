@@ -7,17 +7,28 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@JsonPropertyOrder({ "lng", "lat"})
+@JsonPropertyOrder({ "clientLocationName","lng", "lat","city" ,"country","address"})
 
 public class clientLocation {
 
     public clientLocation() {super();    }
 
-    public clientLocation(@JsonProperty("lng")double lng,
-                          @JsonProperty("lat")double lat) {
 
+    // city
+    // country
+    //address
+    public clientLocation(@JsonProperty("clientLocationName")String clientLocationName,
+                          @JsonProperty("lng")double lng,
+                          @JsonProperty("lat")double lat,
+                          @JsonProperty("city")String city,
+                          @JsonProperty("country")String country,
+                          @JsonProperty("address")String address) {
+        this.clientLocationName = clientLocationName ;
         this.lng = lng;
         this.lat = lat;
+        this.city = city ;
+        this.country = country;
+        this.address = address;
     }
 
     @Id
@@ -25,12 +36,17 @@ public class clientLocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int clLocationID ;
 
-
-    @Column( nullable = false)
     private double lng;
 
-    @Column( nullable = false)
     private double lat ;
+
+    private String city ;
+
+    private String address ;
+
+    private String country ;
+
+    private String clientLocationName;
 
     public int getClLocationID() {
         return clLocationID;
@@ -56,6 +72,38 @@ public class clientLocation {
 
     public void setLat(double lat) {
         this.lat = lat;
+    }
+
+    public String getClientLocationName() {
+        return clientLocationName;
+    }
+
+    public void setClientLocationName(String clientLocationName) {
+        this.clientLocationName = clientLocationName;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     @Override

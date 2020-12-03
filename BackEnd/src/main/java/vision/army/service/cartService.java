@@ -3,6 +3,8 @@ package vision.army.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 import vision.army.reprositery.*;
 import vision.army.entity.*;
@@ -25,7 +27,7 @@ public class cartService {
      * @param clientID the id of the client
      */
     public void createAnCartForClient(int clientID , cart newCart){
-
+        newCart.setCartDate(new Date());
         this.cartRepository.save(newCart);
         client client = this.clientService.getClientByID(clientID);
         List<cart> clCart = client.getAclient_cart();
@@ -72,6 +74,7 @@ public class cartService {
     public void updateCartForConfirm(int cartID , boolean confirm ){
         cart oldCart = this.cartRepository.findById(cartID).orElse(null);
         oldCart.setConfirm(confirm);
+        oldCart.setConfirmDate(new Date());
         this.cartRepository.save(oldCart);
 
     }

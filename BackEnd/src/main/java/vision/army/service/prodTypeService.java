@@ -22,7 +22,7 @@ public class prodTypeService {
      * create new productType  in the database
      * @param newProductType  the payload of the productType
      */
-    public void createAnCartForClient(productType newProductType){
+    public void createAnProdType(productType newProductType){
 
         this.prodTypeRepository.save(newProductType);
     }

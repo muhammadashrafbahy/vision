@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import vision.army.reprositery.*;
 import vision.army.entity.*;
@@ -52,6 +53,13 @@ public class ordersService {
         }
     }
     /**
+     * return list of all orders
+     * @return  list of orders
+     */
+    public List<orders> getAllOrders( ){
+        return this.ordersRepository.findAll();
+    }
+    /**
      * return list of orders for given client according to clientID
      * @param clientID the id of the client
      * @return  list of orders for given client
@@ -60,15 +68,16 @@ public class ordersService {
         return this.clientService.getClientByID(clientID).getOrclient_orders();
     }
     /**
-     * return list of open orders for given client according to clientID
+     * return list of  orders by state for given client according to clientID
      * @param clientID the id of the client
+     * @param State the State of the order
      * @return  list of orders for given client
      */
-    public List<orders> getOpenOrdersForClient(int clientID ){
+    public List<orders> getOrdersByStateForClient(int clientID ,String State ){
         List<orders> before =this.clientService.getClientByID(clientID).getOrclient_orders();
         List<orders> after = new ArrayList<>();
         for (orders o: before) {
-            if (o.isState()){
+            if (o.getState().equals(State)){
                 after.add(o);
             }
         }
@@ -76,19 +85,41 @@ public class ordersService {
     }
 
     /**
-     * return list of closed orders for given client according to clientID
-     * @param clientID the id of the client
-     * @return  list of orders for given client
+     * return list of  orders by state
+     * @param state the State of the order
+     * @return  list of orders
      */
-    public List<orders> getClosedOrdersForClient(int clientID ){
-        List<orders> before =this.clientService.getClientByID(clientID).getOrclient_orders();
-        List<orders> after = new ArrayList<>();
-        for (orders o: before) {
-            if (o.isState()==false){
-                after.add(o);
-            }
-        }
-        return after;  }
+    public List<orders> getOrdersByState(String state ){
+      return this.ordersRepository.findAllByState(state);
+    }
+
+    /**
+     * return list of  orders by deliveredDate
+     * @param deliveredDate the date of the deliver
+     * @return  list of orders
+     */
+    public List<orders> getOrdersByDeliveredDate(Date deliveredDate ){
+        return this.ordersRepository.findAllByDeliveredDate(deliveredDate);
+    }
+
+    /**
+     * return list of  orders by orderDate
+     * @param date the date of the order
+     * @return  list of orders
+     */
+    public List<orders> getOrdersByOrderDate(Date date ){
+        return this.ordersRepository.findAllByOrderDate(date);
+    }
+
+    /**
+     * return list of  orders by price range
+     * @param price1
+     * @param price2
+     * @return  list of orders
+     */
+    public List<orders> getOrdersByPriceRang(int price1 , int price2 ){
+        return this.ordersRepository.findAllByDeliverPriceBetween(price1,price2);
+    }
 
     /**
      * return  orders for given id
@@ -116,23 +147,13 @@ public class ordersService {
      * @param  ordersID the id of orders
      * @param  state true of false
      */
-    public void updateOrdersForConfirm(int ordersID , boolean state ){
+    public void updateOrdersState(int ordersID , String state ){
         orders oldOrders = this.ordersRepository.findById(ordersID).orElse(null);
         oldOrders.setState(state);
         this.ordersRepository.save(oldOrders);
 
     }
-    /**
-     * update deliverState of orders data in  the database according to given id
-     * @param  ordersID the id of orders
-     * @param  deliverState track the orders
-     */
-    public void trackTheOrders(int ordersID , String deliverState ){
-        orders oldOrders = this.ordersRepository.findById(ordersID).orElse(null);
-        oldOrders.setDeliverState(deliverState);
-        this.ordersRepository.save(oldOrders);
 
-    }
     /**
      * delete orders data in  the database according to given id
      * @param  ordersID the id of orders

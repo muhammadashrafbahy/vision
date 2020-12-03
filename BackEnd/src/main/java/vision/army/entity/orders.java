@@ -4,24 +4,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 
 @Entity
-@JsonPropertyOrder({ "state", "deliverPeriod","deliverPrice", "deliverState"  , "productID"})
+@JsonPropertyOrder({ "state", "deliverPeriod","deliverPrice" ,"deliveredDate" , "productID"
+        ,"productPrice" ,"productQuantity" , "totalPrice"})
 public class orders {
 
     public orders() {    super();    }
-
-    public orders(@JsonProperty("state") boolean state,
-                 @JsonProperty("productID") String productID,
+// productQuantity
+    public orders(@JsonProperty("deliveredDate") Date deliveredDate,
+                  @JsonProperty("state") String state,
+                 @JsonProperty("productID") int productID,
                  @JsonProperty("deliverPeriod")String deliverPeriod,
                  @JsonProperty("deliverPrice")int deliverPrice,
-                 @JsonProperty("deliverState")String deliverState) {
+                  @JsonProperty("productPrice") int productPrice,
+                  @JsonProperty("productQuantity")int productQuantity,
+                  @JsonProperty("totalPrice")int totalPrice
+                 ) {
+        this.productID =productID;
+        this.deliveredDate = deliveredDate;
         this.state = state;
         this.deliverPeriod = deliverPeriod;
         this.deliverPrice = deliverPrice;
-        this.deliverState = deliverState;
+        this.productPrice =productPrice ;
+        this.productQuantity= productQuantity;
+        this.totalPrice = totalPrice;
+
+
     }
 
     @Id
@@ -30,7 +42,7 @@ public class orders {
     private int ordersID ;
 
     @Column( nullable = false)
-    private boolean state ;
+    private String state ;
 
     @Column( nullable = false)
     private int productID ;
@@ -40,7 +52,18 @@ public class orders {
     private int deliverPrice ;
 
     @Column( nullable = false)
-    private String  deliverState;
+    private Date orderDate ;
+
+    @Column( nullable = false)
+    private int productQuantity;
+
+    @Column( nullable = false)
+    private int productPrice;
+
+    @Column( nullable = false)
+    private int totalPrice;
+
+    private Date deliveredDate ;
 
     public int getOrdersID() {
         return ordersID;
@@ -50,11 +73,11 @@ public class orders {
         this.ordersID = ordersID;
     }
 
-    public boolean isState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(boolean state) {
+    public void setState(String state) {
         this.state = state;
     }
 
@@ -82,12 +105,45 @@ public class orders {
         this.deliverPrice = deliverPrice;
     }
 
-    public String getDeliverState() {
-        return deliverState;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setDeliverState(String deliverState) {
-        this.deliverState = deliverState;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+
+    public Date getDeliveredDate() {
+        return deliveredDate;
+    }
+
+    public void setDeliveredDate(Date deliveredDate) {
+        this.deliveredDate = deliveredDate;
+    }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public int getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(int productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     @Override

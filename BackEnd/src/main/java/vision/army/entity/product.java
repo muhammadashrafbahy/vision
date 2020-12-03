@@ -10,9 +10,13 @@ import java.util.Objects;
 @Entity
 @JsonPropertyOrder({ "prodName", "prodPrice", "description",
         "prdTypeID", "brandID", "state",
-        "rate", "salesNo", "itemNo","prdTypeMainID"})
+        "rate", "salesNo", "itemNo","prdTypeMainID"
+        , "prevPrice", "saving","offered"})
 public class product {
     public product() {super();    }
+// previous price
+// saving
+// offer
 
 
     public product(@JsonProperty("prodName")String prodName,
@@ -24,17 +28,23 @@ public class product {
                    @JsonProperty("rate")int rate,
                    @JsonProperty("salesNo")int salesNo,
                    @JsonProperty("itemNo")int itemNo,
-                   @JsonProperty("prdTypeMainID")int prdTypeMainID) {
+                   @JsonProperty("prdTypeMainID")int prdTypeMainID,
+                   @JsonProperty("offered")boolean offered,
+                   @JsonProperty("saving")int saving,
+                   @JsonProperty("prevPrice")int prevPrice) {
         this.prodName = prodName;
         this.prodPrice = prodPrice;
         this.description = description;
         this.prdTypeID = prdTypeID;
         this.brandID = brandID;
         this.state = state;
-        Rate = rate;
+        this.Rate = rate;
         this.salesNo = salesNo;
         this.itemNo = itemNo;
         this.prdTypeMainID = prdTypeMainID;
+        this.prevPrice = prevPrice ;
+        this.saving = saving;
+        this.offered = offered;
     }
 
     @Id
@@ -70,6 +80,11 @@ public class product {
     @Column( nullable = false)
     private int prdTypeMainID;
 
+    private  boolean offered ;
+
+    private int prevPrice ;
+
+    private int saving ;
 
         @OneToMany(cascade = CascadeType.ALL, targetEntity = productImage.class)
     @JoinTable(name = "Aproduct_images" ,joinColumns = {@JoinColumn(name = "product_ID")}
@@ -172,6 +187,31 @@ public class product {
     public void setProductImages(List<productImage> productImages) {
         this.AproductImages = productImages;
     }
+
+    public boolean isOffered() {
+        return offered;
+    }
+
+    public void setOffered(boolean offered) {
+        this.offered = offered;
+    }
+
+    public int getPrevPrice() {
+        return prevPrice;
+    }
+
+    public void setPrevPrice(int prevPrice) {
+        this.prevPrice = prevPrice;
+    }
+
+    public int getSaving() {
+        return saving;
+    }
+
+    public void setSaving(int saving) {
+        this.saving = saving;
+    }
+
 
 
     @Override

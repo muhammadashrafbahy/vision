@@ -8,21 +8,28 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@JsonPropertyOrder({ "productID", "confirm",
-        "cartDate", "confirmDate"})
+@JsonPropertyOrder({ "productID", "confirm","cartDate", "confirmDate"
+        ,"productPrice" ,"productQuantity" , "totalPrice"})
 public class cart {
     public cart() {super();    }
 
-
+// product quantity
+    //product price
     public cart(@JsonProperty("productID")int productID,
                 @JsonProperty("confirm")boolean confirm,
                 @JsonProperty("cartDate")Date cartDate,
-                @JsonProperty("confirmDate")Date confirmDate) {
+                @JsonProperty("confirmDate")Date confirmDate,
+                @JsonProperty("productPrice") int productPrice,
+                @JsonProperty("productQuantity")int productQuantity,
+                @JsonProperty("totalPrice")int totalPrice) {
 
         this.productID = productID;
         this.confirm = confirm;
         this.cartDate = cartDate;
         this.confirmDate = confirmDate;
+        this.productPrice =productPrice ;
+        this.productQuantity= productQuantity;
+        this.totalPrice = totalPrice;
     }
 
     @Id
@@ -40,6 +47,16 @@ public class cart {
     private Date  cartDate ;
 
     private Date confirmDate ;
+
+    @Column( nullable = false)
+    private int productQuantity;
+
+    @Column( nullable = false)
+    private int productPrice;
+
+    @Column( nullable = false)
+    private int totalPrice;
+
 
     public int getCartID() {
         return cartID;
@@ -81,6 +98,31 @@ public class cart {
     public void setConfirmDate(Date confirmDate) {
         this.confirmDate = confirmDate;
     }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public int getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(int productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

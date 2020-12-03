@@ -45,7 +45,7 @@ public class clientService {
      * return all  client from the database
      * @return  list of all clients in the database
      */
-    public List<client> returnALLClient(){
+    public List<client> getALLClient(){
 
         return this.clientRepository.findAll();
     }
@@ -92,12 +92,12 @@ public class clientService {
 
 
         /**
-         * return client according to the client_name
+         * return  list of client according to the client_name
          * @param  clientName the userName of the client
-         * @return client the payload of the resulted client
+         * @return list of  client the payload of the resulted client
          */
-        public client getClientByName(String  clientName ){
-            return this.clientRepository.findByClientName(clientName);
+        public List<client> getClientByName(String  clientName ){
+            return this.clientRepository.findByClientNameContaining(clientName);
 
         }
 

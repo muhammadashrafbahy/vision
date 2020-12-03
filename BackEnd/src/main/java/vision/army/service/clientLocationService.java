@@ -20,7 +20,7 @@ public class clientLocationService {
     }
 
     /**
-     * create new clientLocation for client in the database
+     * create new cligetFproduct_productImageentLocation for client in the database
      * @param newClientLocation  the payload of the clientLocation
      * @param clientID the id of the client
      */

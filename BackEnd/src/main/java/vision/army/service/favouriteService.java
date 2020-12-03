@@ -48,7 +48,7 @@ public class favouriteService {
      * @param favouriteID the id of the client
      * @return  favourite
      */
-    public favourite getFavouriteByID(int favouriteID ){
+    public favourite getFalngvouriteByID(int favouriteID ){
         return this.favouriteRepository.findById(favouriteID).orElse(null);
     }
 

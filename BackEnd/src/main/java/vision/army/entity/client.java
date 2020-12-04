@@ -1,5 +1,6 @@
 package vision.army.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -57,26 +58,31 @@ public class client {
     @OneToMany(cascade = CascadeType.ALL, targetEntity = clientLocation.class)
     @JoinTable(name = "Aclient_location" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "location_ID")} )
+    @JsonIgnore
     private List<clientLocation> Aclient_location;
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = cart.class)
     @JoinTable(name = "Cclient_cart" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "cart_ID")} )
+    @JsonIgnore
     private List<cart> Aclient_cart;
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = resale.class)
     @JoinTable(name = "Rclient_resale" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "resale_ID")} )
+    @JsonIgnore
     private List<resale> Rclient_resale;
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = favourite.class)
     @JoinTable(name = "Fclient_favourite" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "favourite_ID")} )
+    @JsonIgnore
     private List<favourite> Fclient_favourite;
 
     @OneToMany(cascade = CascadeType.REMOVE, targetEntity = orders.class)
     @JoinTable(name = "ORclientorders" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "orders_ID")} )
+    @JsonIgnore
     private List<orders> Orclient_orders;
 
     public int getClientID() {

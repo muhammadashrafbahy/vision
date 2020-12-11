@@ -1,0 +1,109 @@
+<!-- 
+    <div class="productList gridView row">
+        <div *ngFor="let product of productList" class="productContainer col-md-3 col-sm-6 col-12">
+            <div class="wrapper">
+                <a href="#" class="product" (click)="goToSingleProduct(product)">
+                    <div class="imageContainer">
+                        <img  src="../../../../assets/img/products/{{product.img}}" [alt]="product.name">
+                    </div>
+                    <div class="detailsContainer">
+                        <span>{{product.desc}}</span>
+                    </div>
+                    <div class="priceContainer">
+                        <span class="currency">{{product.currency}}</span>
+                        <span class="preReductionPrice" *ngIf="product.preReductionPrice">{{product.preReductionPrice}}</span>
+                        <span class="value">{{product.price}}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>  
+
+
+
+
+  -->
+   <!-- <ngx-image-zoom
+  thumbImage="https://wittlock.github.io/ngx-image-zoom/assets/thumb.jpg"
+  [fullImage]=myFullresImage
+  [magnification]="1"
+  [enableScrollZoom]="true"
+  [enableLens]="true"
+  [lensWidth]="200"
+></ngx-image-zoom> -->
+
+<div class="siteWidthContainer">
+<div class="row" style="margin: 0;">
+    <div class="col-md-7 col-xs-12">
+            <div class="imgs">
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+
+            </div>
+    
+    </div>
+
+    <div class="col-md-5 col-xs-12">
+        <a class="brand">Apple</a>
+        <div class="description">
+            <h1 class="product-Desc">iPhone 11 With FaceTime Green 128GB 4G LTE - Egypt Specs</h1>
+            <div class="additionalDetailsRow">
+                <!-- if modelNumber  -->
+                <p class="modelNumber">Model Number<!-- -->: <!-- -->Iphone 11</p>                    
+             </div>
+             <div class="priceRow">
+              <div class="pdpPrice">
+                <p class="wasPrice">
+                <span class="heading">Was<!-- -->:</span>
+                <span class="value">
+                <span class="preReductionPrice"><span>
+                <span class="currency">EGP</span> 
+                <span class="value">16999.00</span>
+                </span></span>
+                </span>
+                </p>
+                <p class="nowPrice">
+                <span class="heading">Now<!-- -->:</span>
+                <span class="value"><span class="sellingPriceContainer">
+                    <span class="sellingPrice"><span><span class="currency">EGP</span> 
+                    <span class="value">16499.00</span></span></span><span class="vatNote">(<!-- -->Inclusive of VAT<!-- -->)</span></span></span></p><p class=""><span class="heading">Saving<!-- -->:</span><span class="value"><span class="savingsRow"><span class="savingsPrice">
+                        <span><span class="currency null">EGP</span> <span class="value">500.00</span></span></span></span></span></p></div></div>
+            </div>
+        <div class="quantityRow">
+            <h6 class="heading">Quantity</h6>
+            <button class="qutBtn minusBtn" (click)="decreaseQty()">
+                <i class="fa fa-minus"></i>
+            </button>
+            <input class="quantity" [(ngModel)]="quntity" disabled="true" name="quntity">
+            <!-- <span >{{quntity}}</span> -->
+            <button class="qutBtn" (click)="increaseQty()">
+                <i class="fa fa-plus"></i>
+            </button>
+            <button class="btn btn-primary main-button">Add TO Cart</button>
+        </div>
+</div>
+<div class="overviews">
+
+    <h5>Overview</h5>
+</div>
+<div class="overviewsection">
+    <p class="sectionHeading">Highlights</p>
+     <ul class="highlights">
+       <li class="">iOS 13 OS ensures user-friendly interface along with desired customizations</li>
+       <li class="">Flaunts a dual rear camera with LED flash that helps capture flawless shots in low light conditions</li>
+       <li class="">Gigabit-class LTE and Wi-Fi 6 allow for even faster download speeds</li>
+       <li class="">Comes with Face ID, the most secure facial authentication in a smartphone</li>
+       <li class="">Spatial audio provides an immersive surround sound experience</li>
+    </ul>
+   </div>
+
+   <div class="overviewsection">
+       <p class="sectionHeading">Overview</p>
+       <span class="details">
+
+           A new dual‑camera system captures more of what you see and love. The fastest chip ever in a smartphone and all‑day battery life let you do more and charge less. And the highest‑quality video in a smartphone, so your memories look better&nbsp;than&nbsp;ever. Take your photos from wide to ultrawide. A redesigned interface uses the new Ultrawide camera to show you what’s happening outside the frame — and lets you capture it. Shoot and edit videos as easily as you do photos. It’s the world’s most popular camera, now with a whole new perspective. iPhone&nbsp;11 shoots beautifully sharp 4K video at 60 fps across all its cameras. The Ultrawide camera captures four times more scene, so it’s perfect for action shots like your dog catching a frisbee. If you’re recording a performance — say, your kid’s piano recital — when you zoom in, the audio zooms too. And now you can edit videos as easily as you do photos. Shooting in low light doesn’t have to be a shot in the dark. Night mode is a new feature that turns on automatically for low‑light photos
+        
+        </span>
+        </div>
+</div>
+</div>
+   

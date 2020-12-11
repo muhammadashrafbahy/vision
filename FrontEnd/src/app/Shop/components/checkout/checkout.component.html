@@ -1,0 +1,173 @@
+<div class="siteWidthContainer">
+
+<ng-wizard [config]="config">
+  
+    <ng-wizard-step [title]="'Shipping Address'" 
+      [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+        <div class="addressArea">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="address selected">
+                        <div class="addressLabel">
+                            work 
+                            <span class="fa fa-map-marker-alt"></span>
+                        </div>
+                        <div class="addressDetails">
+                            <div class="name">
+                                <label>Name</label>
+                                Ashraf Zidan
+                            </div>
+        
+                            <div class="Address">
+                                <label>Address</label>
+                                
+        34 أ الملتقى العربى 19 - Sayed Zakaria - Sheraton Al Matar - El Nozha - Cairo Governorate Cairo Egypt
+                            </div>
+        
+        
+                            <div class="phone">
+                                <label>Phone</label>
+                                01003196789
+                            </div>
+        
+                        </div>
+                    </div>
+
+
+                    <div class="address">
+                        <div class="addressLabel">
+                            work 
+                            <span class="fa fa-map-marker-alt"></span>
+                        </div>
+                        <div class="addressDetails">
+                            <div class="name">
+                                <label>Name</label>
+                                Ashraf Zidan
+                            </div>
+        
+                            <div class="Address">
+                                <label>Address</label>
+                                
+        34 أ الملتقى العربى 19 - Sayed Zakaria - Sheraton Al Matar - El Nozha - Cairo Governorate Cairo Egypt
+                            </div>
+        
+        
+                            <div class="phone">
+                                <label>Phone</label>
+                                01003196789
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="addAddress">
+
+                        <button class="btn">
+                            <span class="fa fa-plus"></span>
+                            Add address</button>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+
+    </ng-wizard-step>
+    
+    <ng-wizard-step [title]="'Payment'"  >
+      <h2 class="StepTitle">
+          {{'Payment.title' | translate}}
+      </h2>
+
+      <div class="row ">
+          <!-- payment method -->
+          <div class="col-md-7">
+              <div class="payment">
+            <ngb-tabset type="pills" >
+                <ngb-tab >
+                    <ng-template ngbTabTitle><i class="fab fa-cc-visa"></i>{{'Payment.payCard' | translate}}</ng-template>
+                  <ng-template ngbTabContent>
+                    
+
+                    <form class="paymentForm">
+                        <div class="fieldWrapper">
+                        <label>Card Number</label>
+                        <div class="inputWrapper">
+                        <input type="number" id="ccNumber" placeholder="**** **** **** ****" pattern="\d*" class="form-control" value="">
+                        <span class=" paymentMethodIcon "></span>
+                        </div>
+                        </div>
+                        <div class="fieldRow"><div class="fieldWrapper">
+                            <label >Expiry Date</label>
+                        <div class="inputWrapperExpiry">
+                            <div class="cardExpiryMonth">
+                                <input type="number" name="cardExpiryMonth" placeholder="MM" pattern="\d*" class="form-control" value=""></div>
+                                <div class="expirySeparator">
+                                    <input type="text" placeholder="/" disabled="" class="form-control"></div>
+                                <div class="cardExpiryYear"><input type="number" name="cardExpiryYear" placeholder="YY" pattern="\d*" class="form-control" value=""></div></div>
+                            </div>
+                            <div class="fieldWrapper"><label>CVV</label><div class="inputWrapper withTooltip">
+                            <input type="password" placeholder="Code" pattern="\d*" class="form-control" value="">
+                            <span class="inputHelper"><i class="icon icon-help " style="color: rgb(226, 229, 241); font-size: 20px;"></i><div class="jsx-1565879722 tooltip"><div class="jsx-1565879722 tooltipText">Enter the 3 digit code on the back of your card</div><span class="jsx-1565879722 cardIcon"></span></div></span></div></div></div>
+                    </form>
+
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><i class="fas fa-wallet"></i> 
+                    {{'Payment.payCash' | translate}}
+                </ng-template>
+                  <ng-template ngbTabContent>
+                      
+                    <div class="paymentMethodWrapper">
+                        <p >Please note there is a non-refundable fee of EGP 10.00 for our cash on delivery service.</p>
+                        <p>To save on this amount, please <span class="switchMethods">proceed with debit/credit card.</span></p>
+                    </div>
+
+                  </ng-template>
+                </ngb-tab>
+                </ngb-tabset>
+            </div>
+                <div class="placeOrder" >
+                    <button (click)="checkout()"  class="btn btn-primary main-button">
+                    {{'Payment.placeOrder' | translate}}
+                    </button>
+    
+                </div>
+          </div>
+          <div class="col-md-5">
+            <div class="invoiceColumn">
+                <div class="invoiceContainer">
+                    <h4 class="invoiceHeader">Order Summary</h4>
+                    <div class="invoiceRows">
+                            <div class="invoiceRow">
+                                <span class="heading">Subtotal <span class="cartCount">(1 item)</span></span>
+                                <span class="value"><span><span class="currency">EGP</span> <span class="value">13499.00</span></span></span>
+                            </div>
+
+                            <div class="invoiceRow">
+                                <span class="heading">Shipping</span>
+                                <span class="value freeAmount">free</span>
+                            </div>
+                            <div class="invoiceRow totalRow">
+                                <span class="heading">Total <span class="vatNote">(Inclusive of VAT)</span></span>
+                                <span class="value"><span><span class="currency">EGP</span> <span class="value">13499.00</span></span></span>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+      
+    </ng-wizard-step>
+    
+    <!-- <ng-wizard-step [title]="'Order Placed'" 
+      [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+      <span>Step 3 content</span>
+    </ng-wizard-step>
+    -->
+  
+  </ng-wizard>
+</div>
+  

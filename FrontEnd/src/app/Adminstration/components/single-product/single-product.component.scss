@@ -1,0 +1,146 @@
+
+ 
+    .brand{
+        display: inline-block;
+        padding-bottom: 1px;
+        font-size: 16px;
+        color: #7e859b;
+    }
+    .description{
+        h1{
+                font-weight: 600;
+                font-size: 20px;
+        }
+        .additionalDetailsRow {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            margin-top: 8px;
+            .modelNumber {
+                color: #7e859b;
+                font-size: 0.716666rem;
+                margin: 0;
+            }
+
+        .modelNumber+.reviewsContainer {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        }
+        .priceRow {
+            margin: 16px 0 26px;
+            .pdpPrice{
+                display: table;
+               
+                .pdpPrice>p{
+                    display: table-row;
+                }
+                .heading {
+                    padding-right: 8px;
+                    font-size: 0.71666rem;
+                    color: #b2bbd2;
+                }
+                .preReductionPrice {
+                    color: #7e859b;
+                    -webkit-text-decoration: line-through;
+                    text-decoration: line-through;
+                    font-size: 0.79rem;
+                }
+                .sellingPrice {
+                    font-size:26px;
+                    font-weight: bold;
+                    margin-right: 6px;
+                    line-height: 1;
+                }
+                 .vatNote{
+                    font-size: 0.816666rem;
+                    color: #7e859b;
+                    line-height: 1.6;
+                 }
+                 .savingsPrice {
+                    font-weight: 600;
+                    font-size: 14px;
+                    margin-right: 6px;
+                }
+            }
+        }
+    }
+    .overviews{
+        width: 100%;
+        h5{
+            font-size: 20px;
+            font-weight: bold;
+            color: #3866df;
+            border-bottom: 3px solid;
+            display: inline-block;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .overviewsection{
+        p.sectionHeading {
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-size: 13px;
+            margin-bottom: 0.5rem;
+
+        }
+        ul.highlights {
+            list-style-type: disc;
+            margin-left: 16px;
+            padding-left: 5px;
+
+        }
+        .highlights li{
+                margin-top: 6px;
+                font-size: 13px;
+            
+        }
+        .details{
+            font-size: 12px;
+        }
+    }
+    .qutBtn{
+        background: none;
+        border: 1px solid #ddd;
+        outline: 0;
+        margin: 0 8px;
+        padding: 5px 12px;
+        i{
+        color: var(--Vprimary);
+
+        }
+    }
+    .minusBtn{
+        margin-left:0 !important ;
+    }
+    .main-button{
+        text-transform: uppercase;
+        padding: 6px 55px;
+    }
+    h6.heading{
+        margin-bottom: 6px;
+        display: block;
+        color: #7e859b;
+        font-size: 12px;
+        
+    }
+    .quantity
+    {
+        border: 0;
+        width: 25px;
+        text-align: center;
+        background: none;
+        &:focus{
+            border: 0;
+            outline: 0;
+        }
+    }

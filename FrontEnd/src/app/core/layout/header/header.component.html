@@ -4,17 +4,46 @@
     <div class="float-right">
       <ul class="custom">
         <li>
-          <a><i class="fa fa-user mr-1"></i><span > تسجيل </span></a>
+          <a (click)="openRegister()"> <i class="fa fa-user mr-1"></i><span > {{'Register.Register' | translate}} </span></a>
         </li>
-        <li ><a><i class="fa fa-sign-in mr-1"></i><span> دخول </span></a>
+        <li (click)="openLogin()" ><a><i class="fas fa-sign-in-alt mr-1"></i><span>
+          {{'Login.Login' | translate}}   </span></a>
         </li>
       </ul>
+
+     
     </div> 
-  </div>
-  
+
+ 
+      <div class="dropdown ml-5 d-flex" ngbDropdown>
+
+        <a class="lang"  id="dropdownBasic1" ngbDropdownToggle>
+          {{ 'Lang' | translate }}
+        </a>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem><a (click)="changeLanguage('ar')" class="dropdown-item" >
+            اللغة العربية
+          </a>
+        </button>
+          <button ngbDropdownItem>
+            <a (click)="changeLanguage('en')" class="dropdown-item">
+          
+              English
+
+            </a>
+
+          </button>
+      
+      </div>
+
+    </div>
+    
+    
+   </div>
+ 
 
  <nav class="navbar navbar-expand">
-  <a class="navbar-brand"  [ngClass]="smallSideBarFlag? '':'sidebarActive'">
+  <a class="navbar-brand"  routerLink="/home">
       <!-- <img class="logo img-fluid" src="../../../../assets/img/Jupiter-Cloud-wide-size.png"> -->
    VISIONLOGO
     </a>
@@ -35,19 +64,21 @@
     <!-- <li class="nav-item li-padding spreating d-none d-sm-block">
     </li> -->
     <li class="nav-item search-item li-padding">
+      <form (submit)="search()">
       <div class="input-group flex-nowrap" id="search_box">
-        <input type="text" class="form-control" placeholder="search Here .... " [(ngModel)]="searchText"> 
+        <input type="text" class="form-control" name="search" placeholder="{{'searchPlaceholder' | translate}}..." [(ngModel)]="searchText"> 
            <div class="input-group-button">
-          <button id="searchButton" class="button primary expand" type="submit" name="button"><i class="fa fa-search"></i></button>
-          <button style="border-right: 1px solid;" id="filterButton" class="button primary expand" type="submit" name="button"><i class="fa fa-filter"></i></button>
+          <button id="searchButton" class="button primary expand" (click)="search()" type="submit" ><i class="fa fa-search"></i></button>
+          <!-- <button style="border-right: 1px solid;" id="filterButton" class="button primary expand" type="submit" name="button"><i class="fa fa-filter"></i></button> -->
        
         </div>
     </div>
+  </form>
     </li> 
 
     <li ngbDropdown class="nav-item notfications-item li-padding">
       
-      <a id='badge-envelope' class="nav-link icon-hover" ngbDropdownToggle>
+      <a id='badge-envelope' class="nav-link icon-hover" routerLink="/home/cart">
         
         <i class="fa fa-shopping-cart"></i>
         <!-- <span *ngIf="cartItem.length > 0;else zeroNotfication" class="badge badge-animation">5</span> -->
@@ -59,37 +90,7 @@
 
   </ul>
 
-<!-- 
-   -->
-      <!-- <ul class="dropdown-menu dropdown-menu-right notfications-dropdown" ngbDropdownMenu
-        aria-labelledby="dropdownBasic2">
-        <li role="presentation" class="text-center notfication-header">
-          <a href="#" class="dropdown-menu-header">Notifications</a>
-        </li>
 
-
-    <li ngbDropdown class="nav-item dropdown user-settings">
-      <a class="nav-link dropdown-toggle " id="dropdownBasic1" ngbDropdownToggle>
-        <img class="user-img img-fluid" src="assets/img/user.png">
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <a class="dropdown-item" ngbDropdownItem (click)="setGreenTheme()">green Theme</a>
-      <div class="dropdown-divider"></div>
-        <div class="langs">
-          <a class="dropdown-item" [ngClass]="appDirection === 'rtl'? 'actives':''" ngbDropdownItem (click)="changeLanguage('ar')">عربى</a>
-          | 
-          <a class="dropdown-item" [ngClass]="appDirection === 'ltr' ? 'actives':''" ngbDropdownItem (click)="changeLanguage('en')">English</a>
- 
-        </div>
-        <div class="dropdown-divider"></div>
-
-        <a class="dropdown-item" ngbDropdownItem (click)="logOut()">
-          <i class="fas fa-power-off"></i>
-          Log Out
-        </a>
-      </div>
-    </li>
-  </ul> -->
 </nav> 
 </div>
 <div class="clearfix"></div>

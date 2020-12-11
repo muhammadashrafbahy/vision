@@ -1,8 +1,11 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+ import { LangService } from '../../shared/langs/lang-service';
+import { LoginComponent } from '../../Auth/login/login.component';
+import { RegisterComponent } from '../../Auth/register/register.component';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-
+ 
 
 @Component({
   selector: 'app-header',
@@ -13,7 +16,6 @@ import { ToastrService } from 'ngx-toastr';
 export class HeaderComponent implements OnInit {
 
   public userName = '';
-  public smallSideBarFlag: boolean;
   public searchBoxFlag = false;
   public searchText = '';
   public notifications = [];
@@ -27,51 +29,23 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthenticationService,
               // private store: Store<AppState> , 
               // private themeService: ThemeService,
-              // private langService: LangService
+              private langService: LangService,
+              private modalService: NgbModal,
+              private _router:Router
               ) {
 
-    // this.store.select('menu').subscribe(
-    //   val => {
-    //     this.smallSideBarFlag = val.menustate;
-    //   }
-    // );
-
-    // this.appDirection = this.langService.appDirection;
-    // this.appLocale = this.langService.appLocale;
+  
+    this.appDirection = this.langService.appDirection;
+    this.appLocale = this.langService.appLocale;
   }
 
   ngOnInit() {
  
-    this.userShortcuts.push(
-      {
-        name: 'Admin',
-        icon: 'fa-user-cog',
-        url: '/admin-tools',
-      },
-      {
-        name: 'Reports',
-        icon: 'fa-file-pdf',
-        url: '#',
-      },
-      {
-        name: 'Dashboard',
-        icon: 'fa-tachometer-alt',
-        url: '#',
-      },
-
-      {
-        name: 'workflow',
-        icon: 'fa-sitemap',
-        url: '#',
-      }
-    );
+  
    }
 
 
-  toggleSearchBox = () => {
-    this.searchBoxFlag = !this.searchBoxFlag;
-    this.searchText = '';
-  }
+
 
   logOut = () => {
     this.authService.logout();
@@ -91,11 +65,26 @@ export class HeaderComponent implements OnInit {
   }
 
   changeLanguage(locale){
-    // if (locale !== this.appLocale) {
-    //   this.langService.setCurrentLang(locale);
-    //   window.location.reload();
-    // }
+    if (locale !== this.appLocale) {
+      this.langService.setCurrentLang(locale);
+      window.location.reload();
+    }
 
   }
 
+    // open login
+    openLogin() {
+      const modalRef = this.modalService.open(LoginComponent);
+
+    }
+
+    // open register
+    openRegister() {
+    const modalRef = this.modalService.open(RegisterComponent);
+
+  }
+
+  search(){
+    this._router.navigateByUrl('/home/result?searchKey='+this.searchText)
+  }
 }

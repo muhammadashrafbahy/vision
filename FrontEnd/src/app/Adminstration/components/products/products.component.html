@@ -1,27 +1,8 @@
 
-<div class="sliderContainer">
-
-    <ngb-carousel   [showNavigationIndicators] = "false">
-        <ng-template *ngFor="let slide of salesSlides" ngbSlide>
-            <div *ngIf="slide.discount" class="ribbon ribbon-top-left"><span>{{slide.discount}} %</span></div>
-            <div class="picsum-img-wrapper">
-                <div class="overlayer"></div>
-                <img src="../../../../assets/img/banners/{{slide.img}}" alt="slide">
-            </div>
-            <div class="carousel-caption">
-                <!-- <h3>{{slide.title}}</h3> -->
-                <p>{{slide.desc}}</p>
-                <button class="btn btn-primary main-button">Shop Now</button>
-            </div>
-        </ng-template>
-        
-    </ngb-carousel>
-    <div class="container">
-
     <div class="productList gridView row">
         <div *ngFor="let product of productList" class="productContainer col-md-3 col-sm-6 col-12">
             <div class="wrapper">
-                <a href="#" class="product">
+                <a (click)="goToSingleProduct(product)" class="product" >
                     <div class="imageContainer">
                         <img  src="../../../../assets/img/products/{{product.img}}" [alt]="product.name">
                     </div>
@@ -36,9 +17,4 @@
                 </a>
             </div>
         </div>
-    </div>  
-</div>
-
-</div>
-
- 
+    </div>

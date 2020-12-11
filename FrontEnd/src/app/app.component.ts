@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LangService } from './core/shared/langs/lang-service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'visionAPP';
+
+  constructor(private langService: LangService){
+    this.langService.setCurrentLang(this.langService.getCurrentLang())
+
+  }
 }

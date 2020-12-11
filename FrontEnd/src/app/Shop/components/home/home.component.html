@@ -1,0 +1,27 @@
+
+<div class="sliderContainer">
+
+    <ngb-carousel   [showNavigationIndicators] = "false">
+        <ng-template *ngFor="let slide of salesSlides" ngbSlide>
+            <div *ngIf="slide.discount" class="ribbon ribbon-top-left"><span>{{slide.discount}} %</span></div>
+            <div class="picsum-img-wrapper">
+                <div class="overlayer"></div>
+                <img src="../../../../assets/img/banners/{{slide.img}}" alt="slide">
+            </div>
+            <div class="carousel-caption">
+                <!-- <h3>{{slide.title}}</h3> -->
+                <p>{{slide.desc}}</p>
+                <!-- <button class="btn btn-primary main-button">Shop Now</button> -->
+            </div>
+        </ng-template>
+        
+    </ngb-carousel>
+</div>
+    <div class="container">
+    <h3 class="mainTitle">{{'Most Seller' | translate}}</h3>
+<app-products [productList]='productList'></app-products>
+</div>
+
+
+
+ 

@@ -1,0 +1,87 @@
+{
+  "Lang":"Language",
+  "searchPlaceholder":"Search Here",
+  "Login": {
+    "Login": "Login",
+    "MailOrUsername": "Mail or Username",
+    "Password": "Password",
+    "ForgotPassword": "Forgot Password",
+    "DonotHaveAccount": " Don't have account?",
+    "SignUP": "Sign UP",
+    "SignInWithFacebook": "Sign in with Facebook"
+  },
+  "Register": {
+    "Register": "Register",
+    "username": "username",
+    "Phone": "Phone",
+    "Email": "Email",
+    "Password": "Password",
+    "AccountType": "Account Type",
+    "Landlord": "Landlord",
+    "Tenant": "Tenant",
+    "AlreadyHaveAnAccount": "Already have an account?",
+    "SignIn": "Sign In"
+  },
+  "ForgotPassword": {
+    "ForgotPassword": "Forgot Password",
+    "Home": "Home",
+    "Pages": "Pages",
+    "MailOrUsername": "Mail or Username",
+    "Send": "Send",
+    "sendMeBack": "send me back",
+    "toTheSignIn": "to the sign in.",
+    "ForgetIt": "Forget it,"
+  },
+  "item":"item",
+  "cart":{
+    "cartEmpty":"Your shopping cart looks empty",
+    "cartEmptyDesc":"What are you waiting for?",
+    "startShopping":"Start Shopping",
+    "title":"My Cart"
+  },
+  "Next":"Next",
+  "Payment":{
+    "title":"Payment",
+    "payCard":"Pay With Card",
+    "payCash":"Pay with Cash",
+    "CARDNUMBER":"Card Number",
+    "EXPIRYDATE":"Expiry Date",
+    "CVV":"CVV",
+    "placeOrder":"Place Order"
+  },
+  "Most Seller":"Most Seller",
+  "filter":{
+    "Category":"Category",
+    "Brand":"Brand",
+    "Product":"Product",
+    "cat1":"Electrical devices",
+    "cat2":"Houseware"
+  },
+  "user":{
+    "name":"name",
+    "userName":"userName",
+    "email":"Email",
+    "pass":"Password",
+    "phone":"phone",
+    "confirmPass":"Confirm Passwor",
+    "privilage":"Privilage"
+  },
+  "error":{
+    "required":"This Field is Required",
+    "validEmail":"Email Must be a valid email address",
+    "phonePattern":"Phone Must be valid"
+
+  },
+  "Brand":{
+    "add":"Add Brand",
+    "name":"Name",
+    "desc":"description",
+    "logo":"logo"
+  },
+  "Product":{
+    "name":"Product Name",
+    "price":"Price"
+
+  },
+  "browse":"Browse"
+  }

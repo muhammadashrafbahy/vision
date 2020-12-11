@@ -1,0 +1,20 @@
+
+    <div class="productList gridView row">
+        <div *ngFor="let product of productList" class="productContainer col-md-3 col-sm-6 col-12">
+            <div class="wrapper">
+                <a (click)="goToSingleProduct(product)" class="product" >
+                    <div class="imageContainer">
+                        <img  src="../../../../assets/img/products/{{product.img}}" [alt]="product.name">
+                    </div>
+                    <div class="detailsContainer">
+                        <span>{{product.desc}}</span>
+                    </div>
+                    <div class="priceContainer">
+                        <span class="currency">{{product.currency}}</span>
+                        <span class="preReductionPrice" *ngIf="product.preReductionPrice">{{product.preReductionPrice}}</span>
+                        <span class="value">{{product.price}}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>

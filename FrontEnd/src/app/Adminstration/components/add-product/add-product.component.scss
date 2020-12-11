@@ -1,0 +1,76 @@
+@import '~ng-wizard/themes/ng_wizard.min.css';
+@import '~ng-wizard/themes/ng_wizard_theme_dots.min.css';
+
+.ng-wizard-theme-dots>ul.step-anchor>li>a:after,.ng-wizard-theme-dots>ul.step-anchor>li>a:before{
+    bottom: -8px !important;
+}
+.ng-wizard-theme-dots>ul.step-anchor:before{
+    top: 55px;
+}
+.step-anchor{
+    width: 60%;
+    text-align: center;
+    margin: auto;
+  
+
+}
+.ng-wizard-theme-dots>ul.step-anchor>li{
+    width: 33.33333%;
+  
+
+}
+.ng-wizard-theme-dots>ul.step-anchor>li>a:after{
+    left: 41.4%;
+}
+.ng-wizard-theme-dots .step-content{padding: 30px 0;}
+.ng-wizard-theme-dots>ul.step-anchor>li.active>a:after{
+    background: var(--Vprimary);
+}
+.ng-wizard-theme-dots>ul.step-anchor>li.active>a{
+    color: var(--Vprimary);
+
+}
+.allCatogary{
+    width: 60%;
+    margin: 20px auto !important;
+    .CategorayContainer{
+        height: 100%;
+        border: 1px solid  var(--Vprimary);
+
+    }
+    .categoaryImage{
+        height: 85%;
+    img{
+        width: 250px;
+        height: 100%;
+
+    }
+}
+}
+.allBrands , .allCatogary{
+    margin: 10px 0;
+.brandContainer , .CategorayContainer{
+    padding: 10px;
+    text-align: center;
+    margin: 0 10px;
+    cursor: pointer;
+    .brnadImage{
+        width: 100%;
+        img{
+            width: 150px;
+            height: auto;
+        }
+
+    }
+    .brandName{
+        font-size: 17px;
+        font-weight: bold;
+        padding: 15px 0 0;
+        margin: 0;
+    }
+}
+
+}
+.wrapper2{
+    padding: 20px 0;
+}

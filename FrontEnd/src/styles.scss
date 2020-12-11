@@ -2,8 +2,15 @@
 @import "~bootstrap/scss/bootstrap";
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-@import "../node_modules/font-awesome/scss/font-awesome.scss";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
 @import "../src/assets/lib/animate/animate.css";
+
+
+
+
 
 @import "../src/assets/scss/variables";
 
@@ -11,7 +18,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
 // html,body,*{direction: rtl;}
 body{
-    background: #f7f7f7;
+    // background: #f7f7f7;
+    background: #fff;
+
     font-family: 'Cairo', sans-serif;
 
 
@@ -121,6 +130,83 @@ body{
    outline: none !important;
    box-shadow:none !important;
   }
+  .main-button-outline{
+    border:1px solid  var(--Vprimary) !important;
+    &:hover{
+      color:#fff;
+      background-color: var(--Vprimary) !important;
+    }
+    &.bold{font-weight: 500;}
+  }
+  
   a{
     text-decoration: none;
   }
+  .modal{
+    z-index: 999999 !important;
+  }
+
+  /*arabic Ui*/
+  html.ar{
+    .wrapper{
+      label{
+        right:  15px !important;
+        left: auto !important;
+        text-align: right !important;
+      }
+    }
+  }
+
+  form:focus{
+    outline: 0;
+  }
+  .siteWidthContainer{
+    margin: 0 auto;
+    min-width: 768px;
+    max-width: 1440px;
+    box-sizing: border-box;
+    padding: 0 45px;
+
+  }
+  @media only screen and (min-width: 1200px){
+.siteWidthContainer {
+    padding: 0 45px;
+}
+}
+
+// hide arrow in input type number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/*input type file*/
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+
+  .browse {
+    float: right;
+    border-radius: 0;
+    color: #fff;
+  }
+
+}
+/*validtion*/
+.ng-touched.ng-invalid .main-button{
+  cursor: not-allowed;
+  background-color: var(--VprimaryDisabled) !important;
+}

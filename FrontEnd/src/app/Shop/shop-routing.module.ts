@@ -1,17 +1,37 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductsComponent } from './components/products/products.component';
+import { AuthenticationGuard } from '../core/services/authentication.guard';
+import { cartComponent } from './components/cart/cart.component';
+import { checkoutComponent } from './components/checkout/checkout.component';
+import { HomeComponent } from './components/home/home.component';
+import { ResultComponent } from './components/result/result.component';
+import { singleProductComponent } from './components/single-product/single-product.component';
  
 
 const routes: Routes = [
   {
     path: '',
-    component: ProductsComponent,
+    component: HomeComponent,
   },
   {
-  //  path: 'Details',
-  //  canActivate: [AuthenticationGuard],
-  //  component: DocumentDetailsComponent
+    path:'product/:id' ,
+    
+    component: singleProductComponent,
+  },
+  {
+    path:'result' ,
+    
+    component: ResultComponent,
+  },
+  {
+    path:'cart' ,
+    
+    component: cartComponent,
+  },
+  {
+   path: 'checkout',
+   canActivate: [AuthenticationGuard],
+   component: checkoutComponent
   }
 
 ];

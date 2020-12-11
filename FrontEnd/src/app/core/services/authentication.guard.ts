@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
+import { LoginComponent } from '../Auth/login/login.component';
 // import { AuthenticationService } from '@alf-core/services/authentication.service';
 
 @Injectable({
@@ -8,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationGuard implements CanActivate {
   constructor(private router: Router,
+    private modalService:NgbModal
     // private authService: AuthenticationService
     ) { }
 
@@ -20,8 +23,8 @@ export class AuthenticationGuard implements CanActivate {
       return true;
     } else {
       // not logged in so redirect to login page with the return url
-      localStorage.setItem('returnUrl', state.url)
-      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+      this.modalService.open(LoginComponent);
+      this.router.navigate(['/home'], { queryParams: { returnUrl: state.url } });
       return false;
     }
   }

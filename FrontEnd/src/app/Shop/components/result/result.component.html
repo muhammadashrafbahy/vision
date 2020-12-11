@@ -1,0 +1,68 @@
+
+    <div class="row" style="margin: 0;">
+        <div class="col-sm-3 col-12">
+            <div class="filterContainer">
+                <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0 , ngb-panel-1">
+                    <ngb-panel >
+                        <ng-template ngbPanelTitle>
+                            <span> 
+                                {{'filter.Category'|translate}}
+                            <i class="fas fa-chevron-down"></i>
+                            </span>
+                          </ng-template>
+
+                      <ng-template ngbPanelContent>
+                          <div class="Categoray">
+                        <div class="cat">
+                            <input class="form-control" type="checkbox">
+                            <label>
+                                {{'filter.cat1'|translate}}
+                            </label>
+                        </div>
+
+                        <div class="cat">
+                            <input class="form-control" type="checkbox">
+                            <label>
+                                {{'filter.cat2'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                      </ng-template>
+                    </ngb-panel>
+                    <ngb-panel>
+                      <ng-template ngbPanelTitle>
+                        <span>
+                            {{'filter.Brand'|translate}} 
+                            <i class="fas fa-chevron-down"></i>
+
+                    </span>
+                      </ng-template>
+                      <ng-template ngbPanelContent>
+                          <div class="Categoray">
+
+                        <div class="cat">
+                            <input class="form-control" type="checkbox">
+                            <label>
+                                Apple
+                            </label>
+                        </div>
+
+                        <div class="cat">
+                            <input class="form-control" type="checkbox">
+                            <label>
+                              Hwawei
+                            </label>
+                        </div>
+                    </div>
+
+                      </ng-template>
+                    </ngb-panel>
+                   
+                  </ngb-accordion>
+                  
+            </div>
+        </div>
+        <div class="col-sm-9 col-12">
+            <app-products [productList]='productList'></app-products>
+        </div>
+    </div>

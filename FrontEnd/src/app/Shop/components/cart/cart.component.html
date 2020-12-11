@@ -1,0 +1,99 @@
+<div *ngIf ="cartList.length==0;else cartContent">
+
+    <div class="container container-cart">
+    <img src="../../../../assets/img/empty-state-cart.svg" alt="Your shopping cart looks empty">
+    <p class="heading">{{ 'cart.cartEmpty' | translate  }}</p>
+    <p class="">{{ 'cart.cartEmptyDesc' | translate  }}</p>
+    <button aria-label="Start Shopping" class="btn main-button-outline bold" (click)="goToHome()">  {{ 'cart.startShopping' | translate  }} </button>
+    </div>
+    
+</div>
+<ng-template #cartContent>
+    <div class="siteWidthContainer">
+        <div class="header">
+            <!-- <span>  -->
+                {{ 'cart.title' | translate  }}
+             <!-- </span> -->
+            <span class="itemsCount">
+                ( {{cartList.length }} {{ 'item' | translate  }} )
+            </span>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+        <div class="cartItem">
+            <div class="cartDetails">
+                <div class="coreDetails">
+                <div class="imageContainer">
+                    <img src="" alt="product image">
+                </div>
+                <div class="detailsContainer">
+                    <div>
+                        <p class="brand">Apple</p>
+                        <p class="productName">iPhone 11 With FaceTime Black 64GB 4G LTE - Egypt Specs</p>
+                        <div class="priceRow">
+                          <p class="price">
+                            <span class="sellingPrice">
+                                <span><span class="currency medium">EGP</span> 
+                                <span class="value">13499.00</span>
+                                </span>
+                            </span>
+                           </p>
+                        </div>
+                        <p class="estimator">
+                            Delivered by 
+                            <strong class="jsx-1112047577">Tue, Nov 24</strong>
+
+                        </p>
+                    </div>
+                    <div class="itemOptions">
+                        <button>
+                            <i class="fa fa-trash-o">Remove</i>
+                        </button>
+                        
+                    </div>
+
+                </div>
+                <div class="quantityRow">
+                    <button class="qutBtn minusBtn" (click)="decreaseQty()">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <input class="quantity" [(ngModel)]="quntity" disabled="true" name="quntity">
+                    <!-- <span >{{quntity}}</span> -->
+                    <button class="qutBtn" (click)="increaseQty()">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+            <div class="invoiceColumn">
+                <div class="invoiceContainer">
+                    <h4 class="invoiceHeader">Order Summary</h4>
+                    <div class="invoiceRows">
+                            <div class="invoiceRow">
+                                <span class="heading">Subtotal <span class="cartCount">(1 item)</span></span>
+                                <span class="value"><span><span class="currency">EGP</span> <span class="value">13499.00</span></span></span>
+                            </div>
+
+                            <div class="invoiceRow">
+                                <span class="heading">Shipping</span>
+                                <span class="value freeAmount">free</span>
+                            </div>
+                            <div class="invoiceRow totalRow">
+                                <span class="heading">Total <span class="vatNote">(Inclusive of VAT)</span></span>
+                                <span class="value"><span><span class="currency">EGP</span> <span class="value">13499.00</span></span></span>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="checkout" >
+                <button (click)="checkout()"  class="btn btn-primary main-button">Checkout Now</button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</ng-template>

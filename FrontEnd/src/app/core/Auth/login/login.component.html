@@ -1,0 +1,44 @@
+<div class="modalContainer">
+ <div class=" wrapper wrapper2">
+<form #loginForm="ngForm" novalidate (ngSubmit)="loginForm.valid && login(loginForm)"  class="col-lg-12 col-xl-12 col-md-12 d-block mx-auto">
+    <h3>{{ 'Login.Login' | translate }}</h3>
+
+    
+    <div class="mail">
+        <input [(ngModel)]="model.email" #email="ngModel" required type="email" name="mail" >
+        <label>{{ 'Login.MailOrUsername' | translate }}</label>
+            <!-- <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                <div *ngIf="lastName.errors.required">Last Name is required</div>
+            </div> -->
+     </div>
+    <div class="passwd">
+        <input [(ngModel)]="model.password" #password="ngModel" required type="password" name="password">
+        <label>{{ 'Login.Password' | translate }}</label>
+         
+    </div>
+    <div class="submit">
+        <button class="btn btn-primary btn-block main-button">
+            {{ 'Login.Login' | translate }}
+         </button>
+    </div>
+    <p class="mb-2"><a routerLink="/forgot">
+        {{ 'Login.ForgotPassword' | translate }}
+     </a></p>
+    <p class="text-dark mb-0">
+        {{ 'Login.DonotHaveAccount' | translate }}
+         <a (click)="goToRegister()"
+            class="text-primary ml-1">
+            {{ 'Login.SignUP' | translate }}
+             
+        </a>
+    </p>
+</form>
+<hr class="divider">
+     <div class="text-center" style="padding: 0 15px;">
+        <button style="background: #3b5998;color: #fff;font-size: 16px;" class="btn btn-lg btn-facebook btn-block text-uppercase" (click)="signInWithFB()" type="submit"><i
+                class="fa fa-facebook-f mr-2"></i>
+                 {{ 'Login.SignInWithFacebook' | translate }}
+                 </button>
+ </div>
+</div>
+</div>

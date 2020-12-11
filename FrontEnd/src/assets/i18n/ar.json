@@ -1,0 +1,80 @@
+
+{
+  "Lang":"اللغة",
+  "searchPlaceholder":"ابـحث هنا",
+  "Login":{
+    "Login":"دخول",
+    "MailOrUsername":"البريد أو اسم المستخدم",
+    "Password":"كلمة المرور",
+    "ForgotPassword":"نسيت كلمة المرور",
+    "DonotHaveAccount":"ليس لديك حساب؟",
+    "SignUP":"الاشتراك",
+    "SignInWithFacebook":"تسجيل الدخول باستخدام فيسبوك"
+  },
+  "Register":{
+    "Register":"تسجيل",
+    "username":"اسم المستخدم",
+    "Phone":"الهاتف",
+    "Email":"البريد الإلكتروني",
+    "Password":"كلمة المرور",
+    "AccountType":"نوع الحساب",
+    "Landlord":"المالك",
+    "Tenant":"المستأجر",
+    "AlreadyHaveAnAccount":"هل لديك حساب بالفعل؟",
+    "SignIn":"تسجيل الدخول"
+  },
+  "item":"عنصر",
+  "cart":{
+    "cartEmpty":"سلة الشراء فارغة",
+    "cartEmptyDesc":"ماذا تنتظر?",
+    "startShopping":"ابدا بالشراء",
+    "title":"السلة"
+  },
+  "Next":"التالي",
+  "Payment":{
+    "title":"طريقـة الدفع",
+    "payCard":"دفع بالكارت",
+    "payCash":"دفع كاش",
+    "CARDNUMBER":"رقم الكارت",
+    "EXPIRYDATE":"تاريخ الانتهاء",
+    "CVV":"CVV",
+    "placeOrder":"تأكيد الطلب"
+
+  },
+  "Most Seller":"الاكثر مبيعا",
+  "filter":{
+    "Category":"الفئة",
+    "Brand":"الماركة",
+    "cat1":"أجهزة كهربية",
+    "cat2":"أدوات منزليه",
+    "Product":"المنتج"
+  },
+  "user":{
+    "name":"الاسم",
+    "userName":"اسم المستخدم",
+    "email":"البريد الالكترونى",
+    "phone":"رقم الموبايل",
+    "pass":"كلمه المرور",
+    "confirmPass":"تاكيد كلمة المرور",
+    "privilage":"الصلاحية"
+  },
+  "error":{
+    "required":"هذا الحقل مطلوب",
+    "validEmail":"يجب أن يكون البريد الإلكتروني عنوان بريد إلكتروني صالحًا",
+    "phonePattern":"يجب ان يكون رقم الموبايل صالحًا"
+
+  },
+  "Brand":{
+    "add":"اضافة ماركة",
+    "name":"الاسم",
+    "desc":"التفاصيل",
+    "logo":"الشعار"
+  },
+  "Product":{
+    "name":"اسم المنتج",
+    "price":"السعر"
+
+  },
+  "browse":"استعراض"
+
+}

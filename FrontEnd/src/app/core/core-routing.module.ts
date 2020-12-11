@@ -30,16 +30,12 @@ const routes: Routes = [
           path: 'home',
           loadChildren: () => import('../Shop/shop.module').then(mod => mod.ShopModule)
         },
-        // {
-        //   path: 'document-library',
-        //   canActivate: [AuthenticationGuard],
-        //   loadChildren: () => import('../document-library/document-library.module').then(mod => mod.DocLibModule)
-        // },
-        // {
-        //   path: 'login-page',
-        //   canActivate: [AuthenticationGuard],
-        //   loadChildren: () => import('../login/login.module').then(mod => mod.LoginModule)
-        // },
+        {
+          path: 'administration',
+          canActivate: [AuthenticationGuard],
+          loadChildren: () => import('../Adminstration/administration.module').then(mod => mod.AdministrationModule)
+        },
+  
         // {
         //   path: 'find-workspace',
         //   canActivate: [AuthenticationGuard],

@@ -1,0 +1,73 @@
+<div class="modalContainer">
+    <div class=" wrapper wrapper2">
+                <div class="col-lg-12 col-xl-12 col-md-12 d-block mx-auto" style="padding: 0">
+                    <div class="wrapper wrapper2">
+                        <form id="Register" class="card-body" tabindex="500">
+                            <h3>{{ 'Register.Register' | translate }}</h3>
+                            <div class="name">
+                                <input type="text" name="login" 
+                                    [autocomplete]="'nope'" pattern="^[^.]*[_'@A-Za-z0-9-]+[^.]*$" required>
+                                <label>{{ 'Register.username' | translate }}</label>
+                                <!-- <small class="form-text text-danger" *ngIf="usernameExists">
+                                    Username name already used!
+                                </small>
+                                <div *ngIf="username.invalid && ( username.dirty || username.touched)">
+                                    <small class="form-text text-danger" *ngIf="username.errors.required">
+                                        Your username is required.
+                                    </small>
+                                    <small class="form-text text-danger" *ngIf="username.errors.pattern">
+                                        Your username can only contain letters and digits.
+                                    </small> -->
+                                <!-- </div> -->
+                            </div>
+                            <div class="name">
+                                <input type="text"  name="phone" 
+                                    pattern="^(010|011|012|015)[0-9]{8}$">
+                                <label>{{ 'Register.Phone' | translate }}</label>
+                                <!-- <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                                    <small class="form-text text-danger" *ngIf="phone.errors.pattern">
+                                        Your Phone is invalid.
+                                    </small>
+                                </div> -->
+                            </div>
+                            <div class="mail">
+                                <input type="email" name="email"  
+                                    required [autocomplete]="'nope'" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                <label>{{ 'Register.Email' | translate }}</label>
+                                <!-- <small class="form-text text-danger" *ngIf="emailExists">
+                                    Email already used!
+                                </small>
+                                <div *ngIf="email.invalid && (email.dirty || email.touched) ">
+                                    <small class="form-text text-danger" *ngIf="email.errors.required">
+                                        Your email is required.
+                                    </small>
+                                    <small class="form-text text-danger" *ngIf="email.errors.pattern">
+                                        Your email is invalid.
+                                    </small> -->
+                                <!-- </div> -->
+                            </div>
+                            <div class="passwd">
+                                <input type="password"  name="password">
+                                <label>{{ 'Register.Password' | translate }}</label>
+                            </div>
+                          <!-- <select class="form-control custom-select" name="accountType" [(ngModel)]="form.accountType">
+                              <option [ngValue]="null" [disabled]="true">AccountType</option>
+                              <option value="Landlord">Landlord</option>
+                              <option value="Tenant">Tenant</option>
+                          </select> -->
+
+                            <div class="submit">
+                                <button class="btn btn-primary btn-block main-button" 
+                                    (click)="onSubmit()">{{ 'Register.Register' | translate }}</button>
+                            </div>
+                            <p class="text-dark mb-0">{{ 'Register.AlreadyHaveAnAccount' | translate }}<a
+                                    (click)="goToLogin()" style="cursor: pointer;"
+                                    class="text-primary ml-1">{{ 'Register.SignIn' | translate }}</a></p>
+                        </form>
+                        <hr class="divider">
+                             <div class="text-center" style="padding: 0 15px;">
+                                <button style="background: #3b5998;color: #fff;font-size: 16px;" class="btn btn-lg btn-facebook btn-block text-uppercase"
+                                    (click)="signInWithFB()" type="submit"><i class="fa fa-facebook-f mr-2"></i> Sign Up                                    With Facebook</button>
+
+                        </div>
+                    </div>

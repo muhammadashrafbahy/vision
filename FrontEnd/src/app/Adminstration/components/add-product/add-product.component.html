@@ -1,0 +1,136 @@
+<div class="siteWidthContainer">
+
+    <ng-wizard [config]="config">
+      
+        <ng-wizard-step [title]= "step1Title" 
+          [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+
+          <div class="allCatogary">
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="CategorayContainer">
+                          <div class="categoaryImage">
+                              <img src="assets/img/Electrical_devices.jpg" alt="Electrical devices">
+                          </div>  
+                  <h6 class="brandName">
+                      {{'filter.cat1' | translate}}
+                    </h6>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                      <div class="CategorayContainer">
+                        <div class="categoaryImage">
+                            <img src="assets/img/Houseware.jpg" alt="Electrical devices">
+                        </div>
+                  <h6 class="brandName"> {{'filter.cat2' | translate}}</h6>
+
+                      </div>
+                </div>
+
+              </div>
+          </div>
+        </ng-wizard-step>
+        
+        <ng-wizard-step [title]= "step2Title" >
+            <div class="clearfix">
+                <button (click)="openAddBrand()" style="min-width: 150px;" class="btn btn-primary main-button float-right">
+                    
+                    {{'Brand.add' | translate}}
+                    <span class="fa fa-plus"></span>
+                </button>
+              </div>
+              <div class="row allBrands">
+    
+              <div class="col-md-2 brandContainer">
+                    <div class="brnadImage">
+                        
+                        <img src="assets/img/Brands/download.png" alt="brandName">
+                    </div>
+                  <h6 class="brandName">Brand 1</h6>
+                </div>
+    
+                <div class="col-md-2 brandContainer">
+                    <div class="brnadImage">
+                        
+                        <img src="assets/img/Brands/download.png" alt="brandName">
+                    </div>
+                  <h6 class="brandName">Brand 1</h6>
+                </div>
+            
+            </div> 
+        
+        </ng-wizard-step>
+        
+              
+        <ng-wizard-step [title]= "step3Title" >
+            
+
+            <div class="m-3">
+                <div>
+                    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+
+                        <div class="form-group col-md-6 col-12">
+                                <label>{{'Product.name' | translate}}</label>
+                                <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">{{'error.required' | translate}}</div>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-6 col-12">
+                            <label>{{'Product.price' | translate}}</label>
+                            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">{{'error.required' | translate}}</div>
+                                <div *ngIf="f.email.errors.email">
+                                    {{'error.validEmail' | translate}}
+                                    
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="logos form-group">
+                        <label style="display: block;">{{ 'Brand.logo' | translate }}</label>
+                          <!-- <input type="file" >  -->
+                          <label class="custom-file-upload">
+                           <input type="file" name="logo" class="form-control"/>
+                           <span class="browse btn main-button">
+                             
+                             {{ 'browse' | translate }}
+                           </span>
+                           
+                       </label>
+                       
+                           
+                      </div>
+
+            
+                            <div class="form-group">
+                                <label>{{'Brand.desc' | translate}}</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                                </div>
+
+                        </div>
+            
+                        <div class="text-center">
+                            
+                            <button class="btn btn-primary main-button">{{'Register.Register' | translate}}</button>
+                            <!-- <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </ng-wizard-step>
+        
+      
+      
+      </ng-wizard>
+    </div>
+      

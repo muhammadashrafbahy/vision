@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LangService } from './core/shared/langs/lang-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,12 @@ import { LangService } from './core/shared/langs/lang-service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'visionAPP';
+  title = 'Vision App';
 
-  constructor(private langService: LangService){
-    this.langService.setCurrentLang(this.langService.getCurrentLang())
+  constructor(private router: Router) {
 
   }
+
+
+
 }

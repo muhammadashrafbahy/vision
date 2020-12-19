@@ -14,6 +14,7 @@ const routes: Routes = [
 },
 {
   path:'users',
+  // canActivate:[],
   component:usersComponent
 },
 {

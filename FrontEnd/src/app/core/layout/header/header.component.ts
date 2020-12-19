@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   public appLocale;
   @ViewChild('searchInput', {static: true}) searchInput: ElementRef;
   cartItem = [];
+  user;
 
   constructor(private authService: AuthenticationService,
               // private store: Store<AppState> , 
@@ -40,8 +41,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
- 
-  
+    this.authService.loggedUser.subscribe(loggedUser => {
+      this.user = JSON.parse(loggedUser);
+    })
+    
    }
 
 
@@ -51,18 +54,6 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
   }
 
-  // to get window Width
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-
-    window.innerWidth > 576 && window.innerWidth < 1199.98 ? this.windowWidth = true : this.windowWidth = false;
-  }
-
-  setGreenTheme() {
-
-    // this.themeService.setGreenTheme();
-
-  }
 
   changeLanguage(locale){
     if (locale !== this.appLocale) {

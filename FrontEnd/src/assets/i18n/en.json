@@ -1,6 +1,7 @@
 {
   "Lang":"Language",
   "searchPlaceholder":"Search Here",
+  "Hello":"Hello",
   "Login": {
     "Login": "Login",
     "MailOrUsername": "Mail or Username",
@@ -8,7 +9,8 @@
     "ForgotPassword": "Forgot Password",
     "DonotHaveAccount": " Don't have account?",
     "SignUP": "Sign UP",
-    "SignInWithFacebook": "Sign in with Facebook"
+    "SignInWithFacebook": "Sign in with Facebook",
+    "LogOut":"LogOut"
   },
   "Register": {
     "Register": "Register",

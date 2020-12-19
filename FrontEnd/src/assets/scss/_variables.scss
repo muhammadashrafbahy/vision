@@ -1,26 +1,26 @@
 :root {
     
-    --background-header : rgba(22,42,52,1) ;
-    --background-light :  rgba(68,163,197,1);
-    --background-white :  #FFFFFF  ;
-    --background-sidebarArrow:#31454d;
-    --Vprimary:  #7f0009 !important;
-    --VprimaryDisabled:#a03840 !important;
-    --background-overlay :  rgba(6, 31, 43, 0.8);  
-    --gray:#e0e0e0;
-    --main-color:#5a5a5a;
-    --color-dark :  #31454e  ;
-    --color-light :  #31454e  ;
+   --background-header : rgba(22,42,52,1) ;
+   --background-light :  rgba(68,163,197,1);
+   --background-white :  #FFFFFF  ;
+   --background-sidebarArrow:#31454d;
+   --Vprimary:  #7f0009 !important;
+   --VprimaryDisabled:#a03840 !important;
+   --background-overlay :  rgba(6, 31, 43, 0.8);  
+   --gray:#e0e0e0;
+   --main-color:#5a5a5a;
+   --color-dark :  #31454e  ;
+   --color-light :  #31454e  ;
 
-    --font-color-light: rgba(255, 255, 255, 0.6);
-    --error-default :  #EF3E36  ;
-    --error-dark :  #800600  ;
-    --error-light :  #FFCECC  ;
+   --font-color-light: rgba(255, 255, 255, 0.6);
+   --error-default :  #EF3E36  ;
+   --error-dark :  #800600  ;
+   --error-light :  #FFCECC  ;
 
-    --background-tertiary-shadow :  0 1px 3px 0 rgba(92, 125, 153, 0.5) 
+   --background-tertiary-shadow :  0 1px 3px 0 rgba(92, 125, 153, 0.5) 
 }
 
- 
+
 $secondary: #132832 ;
 $lightGray: rgba(255, 255, 255, 0.6);
 $offwhite: #f8f9fa;
@@ -33,11 +33,11 @@ $error :  #EF3E36  ;
 // mixin
 //@include transition(background-color 1s .5s, color 2s);
 @mixin transition($args...) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  -ms-transition: $args;
-  -o-transition: $args;
-  transition: $args;
+ -webkit-transition: $args;
+ -moz-transition: $args;
+ -ms-transition: $args;
+ -o-transition: $args;
+ transition: $args;
 }
 
 // Font size Base
@@ -72,13 +72,13 @@ $dark:          $gray-800 !default;
 
 // Modify map
 $theme-colors: (
-   // primary : #0074d9,
-   danger : #ff4136
+  // primary : #0074d9,
+  danger : #ff4136
 );
 
 // Add to map
 $theme-colors: (
-   custom-color : #900
+  custom-color : #900
 );
 // Remove from map
 // $theme-colors: map-remove($theme-colors,  success ,  info ,  danger );

@@ -1,0 +1,252 @@
+@import "_variables";
+@import "../lib/bootstrap4/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+
+
+body  {font-size: 13px;  font-family: 'Roboto', sans-serif, Arial;background-color:$offwhite}
+p {font-size: 13px;}
+a , i {@include transition(all 200ms ease-in-out);}
+/* Misc Override Classes */
+// .dropdown-menu-right {right:0 !important;left:auto !important}
+.page-wrapper{
+  .page-content{
+    min-height: 90vh;
+    padding-top:50px;
+  }
+  .cursor{
+    cursor: pointer;
+  }
+
+  
+    .main-content{
+        margin:15px;
+        margin-top: 25px;
+        @include transition(all 300ms ease-in-out);
+        &.w-min-sidebar {
+            padding-left: 60px;
+        }
+        &.w-lg-sidebar {
+            padding-left: 200px;
+        }
+        .card-header{
+          font-size: 20px;
+          i{color:  var(--primary);font-size: 16px;}
+        }
+    }
+
+
+}
+.userShortcuts-menu {
+
+  display: none;
+  .dropdown-toggle::after{
+    display: none;
+  }
+  .dropdown-item{
+    padding: 0.55rem .75rem;
+        i {
+          margin: 0 4px
+        }
+  }
+}
+
+.hide{
+  display: none
+}
+
+.astric{
+  color: $error;
+}
+.dropdown-item.active, .dropdown-item:active{
+  background: var(--primary);
+}
+
+
+
+/*checkbox and radio button*/
+.container-radio , .container-checkbox {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  
+  /* Hide the browser's default  button */
+  input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+    /* Create a custom radio button */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 22px;
+      width: 22px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+        &::after{
+          content: "";
+          position: absolute;
+          display: none;
+          left: 6px;
+          top: 6px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: white;
+        }
+    }
+/* On mouse-over */
+    &:hover {
+      input ~ .checkmark {
+        background-color: #fff;
+        border-color: var(--primary);
+      }
+    }
+    input:disabled ~ .checkmark{
+      background-color: #e2e2e2;
+      border-color: #e2e2e2; 
+    }
+    /* When the radio button is checked */
+    input:checked ~ .checkmark {
+      background-color: var(--primary);
+      // border-color: #fff;
+      border: 1px solid #ddd;
+
+        &::after{
+          display: block;
+        }
+    }
+    &.label {
+        padding-left: 30px;
+        padding-right: 10px;
+        padding-top: 2px;
+        font-size:  $font-size-base;
+        margin-bottom: 0;
+
+    }
+}
+ /* custom checkbox*/
+
+.container-checkbox {
+  .checkmark {
+    border-radius: 0;
+    &::after{
+    background: none;
+    border-radius: 0;
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    }
+  }
+}
+/*end radio and checkbox*/
+
+/*custome file input*/
+
+
+//modal style
+.modal-content{
+  border: 0;
+  // border-radius: 1.5rem;
+}
+
+//nav tabs style i folder-details
+.nav-tabs .nav-link{
+  border: 0;
+  margin-right: 10px;
+  font-size: 16px;
+}
+// .justify-content-start {
+  // }
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-bottom: 2px solid var(--primary);
+  }
+  .nav-tabs .nav-link:hover{
+    border: 0;
+    color: var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+  }
+  .nav-tabs .nav-link:focus {
+    border: 0;
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+  }
+
+.primaryColor{color: var(--primary);}
+
+.ng-invalid.ng-touched{
+  border-color: $error;
+}
+
+//"add members to workspace" wizard Styling
+.ng-wizard-theme-dots .ng-wizard-toolbar {
+  position: fixed;
+  bottom: 70px;
+  width: 100%;
+  background-color: $lightGray;
+}
+
+.ng-wizard-main {
+  top: 25px  !important;
+  height: 80% !important;
+}
+
+.ng-wizard-theme-dots>ul.step-anchor:before {
+  width: 265px !important;
+  border-radius: 20px !important;
+}
+
+.ng-wizard-theme-dots>ul.step-anchor {
+  justify-content: center;
+  display: flex;
+  background-color: #fff0;
+  margin-top: -12px;
+  z-index: 0;
+}
+
+.ng-wizard-theme-dots>ul.step-anchor>li>a:after {
+  left: 45%;
+}
+.ng-wizard-theme-dots .step-content {
+  padding: 0 0;
+}
+
+.ng-wizard-theme-dots>ul.step-anchor>li>a:hover {
+  border-bottom: 0;
+}
+
+.ng-wizard-btn-next, .ng-wizard-btn-prev{
+  background-color: white;
+  border-color:#138496;
+  color: #138496;
+}
+.ng-wizard-btn-next:hover, .ng-wizard-btn-prev:hover{
+  background-color: #117a8b;
+  border-color: #117a8b;
+}
+.ng-wizard-btn-next.disabled, .ng-wizard-btn-prev.disabled{
+  background-color: white;
+  color: #7d8181;
+  border-color: #7d8181;
+}
+
+
+@import "rtl";
+
+@import "_responsive";

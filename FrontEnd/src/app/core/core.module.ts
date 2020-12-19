@@ -12,6 +12,9 @@ import { NotfoundComponent } from './layout/notfound/notfound.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './Auth/login/login.component';
 import { RegisterComponent } from './Auth/register/register.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './services/error.interceptor';
+import { AppInterceptor } from './services/auth.interceptor';
 
 
 
@@ -36,6 +39,8 @@ import { RegisterComponent } from './Auth/register/register.component';
    
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
    ],
 })
 export class CoreModule { }

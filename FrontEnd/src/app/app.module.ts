@@ -1,40 +1,28 @@
+import { RouterModule } from '@angular/router';
+import { CoreRoutingModule } from './core/core-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { CoreRoutingModule } from './core/core-routing.module';
-import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './core/shared/shared.module';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CoreRoutingModule,
     RouterModule.forRoot([]),
     CoreModule,
-    TranslateModule.forRoot({
-      defaultLanguage: 'ar',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
     SharedModule
   ],
-providers: [TranslateModule],
-  bootstrap: [AppComponent],
-  exports:[]
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+export class AppModule {
 }
-

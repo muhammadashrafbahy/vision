@@ -3,16 +3,30 @@
   <div class="top-header">
     <div class="float-right">
       <ul class="custom">
-        <li>
-          <a (click)="openRegister()"> <i class="fa fa-user mr-1"></i><span > {{'Register.Register' | translate}} </span></a>
-        </li>
-        <li (click)="openLogin()" ><a><i class="fas fa-sign-in-alt mr-1"></i><span>
-          {{'Login.Login' | translate}}   </span></a>
-        </li>
-      </ul>
+        <ng-container *ngIf="! user;else loggedUser">
+
+          <li>
+            <a (click)="openRegister()"> <i class="fa fa-user mr-1"></i><span > {{'Register.Register' | translate}} </span></a>
+          </li>
+          <li (click)="openLogin()" ><a><i class="fas fa-sign-in-alt mr-1"></i><span>
+            {{'Login.Login' | translate}}   </span></a>
+          </li>
+          </ng-container>
+           <ng-template #loggedUser>
+          <li ><a>
+            {{'Hello' | translate}} , {{user.userName}}</a>
+          </li>
+
+          <li (click)="logOut()" ><a><i class="fas fa-sign-in-alt mr-1"></i><span>
+            {{'Login.LogOut' | translate}}   </span></a>
+          </li>
+
+        </ng-template>
+
+        </ul>
 
      
-    </div> 
+  </div>
 
  
       <div class="dropdown ml-5 d-flex" ngbDropdown>

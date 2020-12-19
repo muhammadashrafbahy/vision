@@ -1,25 +1,40 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {Injectable} from '@angular/core';
  import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-// import { NgxSecurityService } from 'ngx-security';
-// import { Functionality } from '@alf-core/models/functionality.model';
+import { BehaviorSubject, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
+  loggedUser = new BehaviorSubject(this.user);
+  SERVER_URL:string = environment.SERVER_URL;
   constructor(
     
               private router: Router,
               private toastr: ToastrService,
               // private securityService: NgxSecurityService
+              private httpClient:HttpClient
               ) {
+                
+          
   }
 
-  login(userId: string, password: string) {
-    // return this.alfrescoService.login(userId, password);
-    return true
+  login(userName: string, password: string) {
+    let params = new URLSearchParams();
+    params.append('username',userName);
+    params.append('password',password);    
+    params.append('grant_type','password');
+    params.append('client_id','vision');
+    let headers = 
+      new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+      'Authorization': 'Basic '+btoa("vision:secret")});
+    let options = { headers: headers };
+
+    return this.httpClient.post(this.SERVER_URL + '/oauth/token',
+    params.toString(),options);
   }
 
   // loadPermissions(funcs?:string, isAdmin?:boolean) {
@@ -50,16 +65,24 @@ export class AuthenticationService {
   // }
 
   logout() {
-    // this.alfrescoService.logout().then(error => {
-
-    //   localStorage.clear();
-    // });
-    // this.securityService.reset();
-    this.router.navigate(['/login']);
+    this.loggedUser.next(null);
+    localStorage.clear();
+    this.router.navigate(['/']);
   }
 
   isLoggedIn(): boolean {
     // return this.alfrescoService.isLoggedIn();
     return true;
   }
+
+
+ set user(value) {
+   this.loggedUser.next(value); 
+   localStorage.setItem('loggedUser', value);
+ }
+
+ get user() {
+   return localStorage.getItem('loggedUser');
+ }
+
 }

@@ -1,6 +1,6 @@
 
 module.exports = {
-    "/oauth": {
+    "/vision": {
         "target": "http://localhost:8090",
         "secure": false,
         "changeOrigin": true,

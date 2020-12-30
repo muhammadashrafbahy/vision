@@ -2,23 +2,28 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ProductService } from 'src/app/core/shared/services/product.service';
 
 @Component({
   selector: 'app-adminProducts',
   templateUrl: './adminProducts.component.html',
   styleUrls: ['./adminProducts.component.scss'],
-  encapsulation:ViewEncapsulation.None
-})
+ })
 export class adminProductsComponent implements OnInit {
   
   productList;
   constructor(private _router:Router,private modalService:NgbModal,
-    private translate: TranslateService, private route: ActivatedRoute) {
+    private translate: TranslateService, private route: ActivatedRoute,
+    private productService:ProductService) {
        
      }
   
  
   ngOnInit(): void {
+
+    this.productService.getAllProduct(0,10).subscribe(product => {
+       
+    });
     this.productList = [
       {
         id:1,

@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Client } from '../Auth/models/client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,43 +28,19 @@ export class AuthenticationService {
     params.append('username',userName);
     params.append('password',password);    
     params.append('grant_type','password');
-    params.append('client_id','vision');
+    // params.append('client_id','vision');
     let headers = 
       new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
       'Authorization': 'Basic '+btoa("vision:secret")});
     let options = { headers: headers };
 
-    return this.httpClient.post(this.SERVER_URL + '/oauth/token',
+    return this.httpClient.post(this.SERVER_URL + 'login',
     params.toString(),options);
   }
 
-  // loadPermissions(funcs?:string, isAdmin?:boolean) {
-  //   let functionalities = funcs? funcs:localStorage.getItem("functionalities")
-
-  //   if (functionalities !== "undefined" && functionalities !== null) {
-  //     let functionalitiesJson = JSON.parse(functionalities)
-  //     functionalitiesJson.forEach( (func: Functionality) => {
-  //       this.securityService.hasPermission(func.functionality.toUpperCase()).subscribe( permissionExists => {
-  //         if (!permissionExists) {
-  //           this.securityService.addPermission(func.functionality);
-  //         }
-  //       })
-  //     })
-  //   }
-
-  //   //note for the 2 next conditions: the order is important, 
-  //   //and it's done on 2 steps because it's called after login (isAdmin is true) and with refresh (isAdmin is undefined)
-  //   if (isAdmin) { 
-  //     localStorage.setItem("isAdmin", "true");
-  //   } else {
-  //     localStorage.setItem("isAdmin", "false");
-  //   }
-
-  //   if (localStorage.getItem("isAdmin") === "true") { //add role admin
-  //     this.securityService.addRole("ADMIN");
-  //   }
-  // }
-
+  registerClient(client:Client){
+    return this.httpClient.post(this.SERVER_URL + 'register/client',client);
+  }
   logout() {
     this.loggedUser.next(null);
     localStorage.clear();

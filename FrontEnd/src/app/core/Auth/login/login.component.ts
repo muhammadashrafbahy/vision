@@ -29,10 +29,10 @@ export class LoginComponent implements OnInit {
   login(loginForm){
 
 
-    this.spinner.show();
     if (loginForm.invalid) {
       return;
     }
+    this.spinner.show();
 
     this.authService.login( loginForm.value.userName.trim(), loginForm.value.password).subscribe(
       (data:any) => {

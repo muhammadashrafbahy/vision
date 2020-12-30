@@ -1,7 +1,10 @@
 {
   "Lang":"Language",
   "searchPlaceholder":"Search Here",
+  "Products":"Products",
   "Hello":"Hello",
+  "add":"Add",
+  "addPhotos":"Add Photos",
   "Login": {
     "Login": "Login",
     "MailOrUsername": "Mail or Username",
@@ -71,7 +74,8 @@
   "error":{
     "required":"This Field is Required",
     "validEmail":"Email Must be a valid email address",
-    "phonePattern":"Phone Must be valid"
+    "phonePattern":"Phone Must be valid",
+    "validPrice":"Price Must Be Valid"
 
   },
   "Brand":{

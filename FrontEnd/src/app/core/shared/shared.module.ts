@@ -11,13 +11,14 @@ import { ProductsComponent } from './components/products/products.component';
 import { NgWizardConfig, NgWizardModule, THEME } from 'ng-wizard';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { DragDirective } from './dragDrop.directive';
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
   };
  
  
 @NgModule({
-  declarations: [ConfirmDialogComponent , ProductsComponent ],
+  declarations: [ConfirmDialogComponent , ProductsComponent,DragDirective ],
   imports: [
     CommonModule,
     ToastrModule.forRoot(),
@@ -44,8 +45,9 @@ const ngWizardConfig: NgWizardConfig = {
     ToastrModule,
     ConfirmDialogComponent,
     ProductsComponent,
+    DragDirective
     ],
-  entryComponents: [ ConfirmDialogComponent]
+  entryComponents: [ ConfirmDialogComponent , DragDirective]
 })
 
 export class SharedModule { }

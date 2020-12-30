@@ -13,7 +13,8 @@ export class AuthenticationGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.loggedUser.value) {
+      
+      if (localStorage.getItem('loggedUser')) {
       // logged in so return true
       return true;
     } else {

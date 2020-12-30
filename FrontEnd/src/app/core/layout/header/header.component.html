@@ -13,7 +13,7 @@
           </li>
           </ng-container>
            <ng-template #loggedUser>
-          <li ><a>
+          <li ><a   routerLink="/administration">
             {{'Hello' | translate}} , {{user.userName}}</a>
           </li>
 
@@ -90,6 +90,7 @@
   </form>
     </li> 
 
+    <ng-container *ngIf="user && user.type !='admin';">
     <li ngbDropdown class="nav-item notfications-item li-padding">
       
       <a id='badge-envelope' class="nav-link icon-hover" routerLink="/home/cart">
@@ -101,7 +102,7 @@
         </ng-template> -->
       </a>
     </li> 
-
+</ng-container>
   </ul>
 
 

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  SERVER_URL:'http://localhost:4200',
+  SERVER_URL:'http://localhost:4200/vision/',
   API_USERNAME:'vision',
   API_PASSWORD:'secret'
 

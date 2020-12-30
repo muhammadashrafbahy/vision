@@ -1,5 +1,24 @@
 <div class="container">
-    <button class="btn btn-primary main-button" (click)="openAddProduct()">Add Product</button>
-<app-products [productList]='productList'></app-products>
+    <div class="card">
+        <div class="card-header page-title">
+          <i class="fas fa-list-ol"></i>
+          
+          {{'Products' | translate}}
+        </div>
+    
+    <div class="contents">
+        <div class="float-right">
+
+            <button class="btn btn-primary main-button" (click)="openAddProduct()">Add Product</button>
+        </div>
+        <div class="clearfix"></div>
+        <app-products [productList]='productList'></app-products>
+
+    </div>
+   
+
+
+</div>
+
 </div>
 

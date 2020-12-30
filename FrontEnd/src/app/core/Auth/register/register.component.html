@@ -2,54 +2,62 @@
     <div class=" wrapper wrapper2">
                 <div class="col-lg-12 col-xl-12 col-md-12 d-block mx-auto" style="padding: 0">
                     <div class="wrapper wrapper2">
-                        <form id="Register" class="card-body" tabindex="500">
+                        <form  class="card-body"  [formGroup]="registerForm">
                             <h3>{{ 'Register.Register' | translate }}</h3>
                             <div class="name">
-                                <input type="text" name="login" 
-                                    [autocomplete]="'nope'" pattern="^[^.]*[_'@A-Za-z0-9-]+[^.]*$" required>
+                                <input type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
                                 <label>{{ 'Register.username' | translate }}</label>
-                                <!-- <small class="form-text text-danger" *ngIf="usernameExists">
-                                    Username name already used!
-                                </small>
-                                <div *ngIf="username.invalid && ( username.dirty || username.touched)">
-                                    <small class="form-text text-danger" *ngIf="username.errors.required">
-                                        Your username is required.
-                                    </small>
-                                    <small class="form-text text-danger" *ngIf="username.errors.pattern">
-                                        Your username can only contain letters and digits.
-                                    </small> -->
-                                <!-- </div> -->
+                                <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.userName.errors.required">{{'error.required' | translate}}</div>
+                                </div>
+
                             </div>
                             <div class="name">
                                 <input type="text"  name="phone" 
-                                    pattern="^(010|011|012|015)[0-9]{8}$">
+                                    formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
+                                    >
                                 <label>{{ 'Register.Phone' | translate }}</label>
-                                <!-- <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-                                    <small class="form-text text-danger" *ngIf="phone.errors.pattern">
-                                        Your Phone is invalid.
-                                    </small>
-                                </div> -->
+                                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                    <div *ngIf="f.phone.errors.required">{{'error.required' | translate}}</div>
+                                    <div *ngIf="f.phone.errors.pattern">{{'error.phonePattern' | translate}}</div>
+                                </div>
                             </div>
                             <div class="mail">
                                 <input type="email" name="email"  
-                                    required [autocomplete]="'nope'" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">                   
                                 <label>{{ 'Register.Email' | translate }}</label>
-                                <!-- <small class="form-text text-danger" *ngIf="emailExists">
-                                    Email already used!
-                                </small>
-                                <div *ngIf="email.invalid && (email.dirty || email.touched) ">
-                                    <small class="form-text text-danger" *ngIf="email.errors.required">
-                                        Your email is required.
-                                    </small>
-                                    <small class="form-text text-danger" *ngIf="email.errors.pattern">
-                                        Your email is invalid.
-                                    </small> -->
-                                <!-- </div> -->
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">{{'error.required' | translate}}</div>
+                                    <div *ngIf="f.email.errors.email">{{'error.validEmail' | translate}}</div>
+                                </div>
+
                             </div>
-                            <div class="passwd">
-                                <input type="password"  name="password">
-                                <label>{{ 'Register.Password' | translate }}</label>
+
+
+                            <div class="form-row">
+                                <div class="form-group col passwd">
+                                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                    <label>{{ 'Register.Password' | translate }}</label>
+
+
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col passwd">
+                                   
+                                    <input type="password"  formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" >
+                                    <label>{{ 'user.confirmPass' | translate }}</label>
+
+                                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                        <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                        <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                                    </div>
+                                </div>
                             </div>
+
+                           
                           <!-- <select class="form-control custom-select" name="accountType" [(ngModel)]="form.accountType">
                               <option [ngValue]="null" [disabled]="true">AccountType</option>
                               <option value="Landlord">Landlord</option>
@@ -58,7 +66,8 @@
 
                             <div class="submit">
                                 <button class="btn btn-primary btn-block main-button" 
-                                    (click)="onSubmit()">{{ 'Register.Register' | translate }}</button>
+                                    (click)="onSubmit()"
+                                    >{{ 'Register.Register' | translate }}</button>
                             </div>
                             <p class="text-dark mb-0">{{ 'Register.AlreadyHaveAnAccount' | translate }}<a
                                     (click)="goToLogin()" style="cursor: pointer;"
@@ -71,3 +80,7 @@
 
                         </div>
                     </div>
+
+                    
+<ngx-spinner [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+</ngx-spinner>

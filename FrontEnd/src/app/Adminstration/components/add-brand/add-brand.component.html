@@ -1,24 +1,34 @@
 <div class="modalContainer">
   <div class=" wrapper wrapper2">
- <form  class="col-lg-12 col-xl-12 col-md-12 d-block mx-auto">
+ <form  novalidate [formGroup]="brandForm" (submit)="onSubmit()" class="col-lg-12 col-xl-12 col-md-12 d-block mx-auto">
  
       
+                             
+
      <div class="form-group">
        <label>{{ 'Brand.name' | translate }}</label>
-         <input type="text" name="name" class="form-control">
- 
+         <input type="text" name="name" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" >
+         
+         <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">{{'error.required' | translate}}</div>
+      </div>
       </div>
      <div class="logos form-group">
        <label style="display: block;">{{ 'Brand.logo' | translate }}</label>
          <!-- <input type="file" >  -->
-         <label class="custom-file-upload">
-          <input type="file" name="logo" class="form-control"/>
+         <label class="custom-file-upload" [ngClass]="{ 'is-invalid': submitted && f.logo.errors }">
+          <input type="file" (change)="onFileChange($event)" name="logo" class="form-control" />
+          <input type="hidden" name="name"   formControlName="logo" >
+
           <span class="browse btn main-button">
             
             {{ 'browse' | translate }}
           </span>
-          
+         <span class="value"> {{fileName}} </span> 
       </label>
+      <div *ngIf="submitted && f.logo.errors" class="invalid-feedback">
+        <div *ngIf="f.logo.errors.required">{{'error.required' | translate}}</div>
+    </div>
       
           
      </div>
@@ -38,3 +48,6 @@
 
  </div>
  </div>
+ 
+<ngx-spinner [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+</ngx-spinner>

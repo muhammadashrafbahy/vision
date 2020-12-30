@@ -19,8 +19,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
 // html,body,*{direction: rtl;}
 body{
-    // background: #f7f7f7;
-    background: #fff;
+    background: #f7f7f7;
+    // background: #fff;
 
     font-family: 'Cairo', sans-serif;
 
@@ -140,7 +140,7 @@ body{
     &.bold{font-weight: 500;}
   }
   
-  a{
+  a , a:hover{
     text-decoration: none;
   }
   .modal{
@@ -204,10 +204,22 @@ input[type="file"] {
     border-radius: 0;
     color: #fff;
   }
+  .value{
+    padding: 7px;
+
+  }
 
 }
 /*validtion*/
 .ng-touched.ng-invalid .main-button{
   cursor: not-allowed;
   background-color: var(--VprimaryDisabled) !important;
+}
+.card-header.page-title{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--Vprimary);
+}
+.custom-file-upload.is-invalid{
+  border-color: #dc3545;
 }

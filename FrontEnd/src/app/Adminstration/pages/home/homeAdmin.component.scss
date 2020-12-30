@@ -1,74 +1,72 @@
-.sliderContainer{ 
-    position: relative;
-    .picsum-img-wrapper{
-        position: relative;
-    img{
-    height: 300px;
-    max-height: 300px;
-    width: 100%;
+.body{
+    background: #f2f2f2 !important;
 }
-}
-}
-.productList{
-    a{text-decoration: none !important;}
-    // padding-top: 30px;
-    .productContainer {
-        padding: 0 0 0 12px;
-        margin-bottom: 15px;
-        .wrapper{
-            background-color: #fff;
-            padding-bottom: 10px;
-    .product{
-        .imageContainer{
-            width: 100%;
-            text-align: center;
-            margin-bottom: 16px;
-            img{
-                max-width:  100%;
-                height: 250px;
+.adminHome{
+    .box{
+        .feature{
+            padding: 15px;
+            background: #fff;
+            color: #7f0009;
+            border-radius: 10px;
+            /* text-align: center; */
+            cursor: pointer;
+            display: flex;
+            margin-bottom: 25px;
+
+        .feature_icon{
+            // background: red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span{
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                border-radius: 100%;
+                margin-right: 15px;
+                font-size: 20px;
+                line-height: 2.4;
+                display: inherit;
+                color: #ecebeb;
+                text-align: center;
+                &::before{
+                    width: 100%;
+                }
+                &.green{
+                    background: green;
+                }
+
+                &.red{
+                    background: #7f0009;
+                }
+
+                &.orange{
+                    background: #FF5722;
+
+                }
+
+               
 
             }
+               
         }
-        .detailsContainer{
-            min-height: 32px;
-            padding:0 15px;
-            font-size: 14px;
-            color: #080504;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 7px;
-            text-align: right;
-        }
-        .priceContainer{
-            font-weight: bold;
-            padding:0 15px;
-            text-align: right;
-            color: #080504;
-            .currency{
-                font-weight: normal;
-                color: #7e859b;
-                margin: 0 3px;
-
-            }
-            .preReductionPrice{
-                color: #b2bbd2;
-                text-decoration: line-through;
-                font-size: .8rem;
-
-
-            }
-        }
-    }
-}
-
-    }
-}
-.mainTitle{
-    padding: 20px 40px 0;
-    margin: 0;
-    font-size: 22px;
+      
+        .feature_title{
+            font-size: 30px;
     font-weight: 600;
+    .counter{
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: .8px;
+        color: #706969;
+    }
+    h6{
+        font-weight: 600;
+        font-size: 18px;
+        color: #5c5c5c;
+
+    }
+        }
+    }
+    }
 }

@@ -4,7 +4,11 @@ import { ActivatedRoute,  Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { of } from 'rxjs';
+import { FileHandle } from 'src/app/core/shared/dragDrop.directive';
+import { ProductService } from 'src/app/core/shared/services/product.service';
+import { Brand } from '../../models/brand.model';
 import { addBrandComponent } from '../add-brand/add-brand.component';
 
 @Component({
@@ -14,6 +18,7 @@ import { addBrandComponent } from '../add-brand/add-brand.component';
   encapsulation: ViewEncapsulation.None
 })
 export class addProductComponent implements OnInit {
+  allBrand: Brand;
   stepStates = {
     normal: STEP_STATE.normal,
     disabled: STEP_STATE.disabled,
@@ -28,7 +33,7 @@ export class addProductComponent implements OnInit {
       next:''
     },
     toolbarSettings: {
-      showNextButton:true,
+      showNextButton:false,
       showPreviousButton: false,
     }
   };
@@ -38,14 +43,26 @@ export class addProductComponent implements OnInit {
   step1Title:string = '';
   step2Title:string = '';
   step3Title:string = '';
+  step4Title:string = '';
+  prodTypeMainID = 0;
+  addedProductId;
+  files: FileHandle[] = [];
+
+
 
   constructor(private router: Router ,private route: ActivatedRoute,
     private formBuilder: FormBuilder,private ngWizardService: NgWizardService,
+    private productService: ProductService,
+    private spinner:NgxSpinnerService,
     private translate: TranslateService,
     private modalService: NgbModal) { 
 
       this.translate.get('Next').subscribe(val =>{         
         this.config.lang.next = val;
+      });
+
+      this.translate.get('addPhotos').subscribe(val =>{         
+        this.step4Title = val;
       });
 
       this.translate.get('filter.Brand').subscribe(val =>{         
@@ -68,12 +85,8 @@ export class addProductComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
-      userName: [''],
-      phone: ['', [ Validators.required , Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      email: ['', [  Validators.required , Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-      privilage: ['', Validators.required]
+      price: ['',[Validators.pattern(/^[0-9]\d*$/),Validators.maxLength(5),Validators.required]],
+      desc:['', Validators.required]
     })
    }
 
@@ -88,8 +101,15 @@ export class addProductComponent implements OnInit {
         return;
     }
 
-    // display form values on success
-    console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.productForm.value, null, 4));
+    this.spinner.show();
+    this.spinner.hide();
+
+    this.showNextStep();
+    this.productService.addProduct(this.productForm.value).subscribe(productId => {
+      this.addedProductId = productId;
+
+
+    });
 }
 onReset() {
   this.submitted = false;
@@ -111,8 +131,13 @@ showPreviousStep(event?: Event) {
   this.ngWizardService.previous();
 }
 
-showNextStep(event?: Event) {
+showNextStep(event?: Event, callBackFunc?,CategoryType?) {
   this.ngWizardService.next();
+  if (callBackFunc == 'getBrands') {
+    this.getAllBrands();
+    this.prodTypeMainID = CategoryType;
+
+  }  
 }
 
 resetWizard(event?: Event) {
@@ -131,5 +156,37 @@ openAddBrand(){
 
 }
 
+getAllBrands(){
+  this.productService.getAllBrands().subscribe((brands:Brand) => {
+    this.allBrand = brands;
+    console.log(this.allBrand);
+    
+    
+  })
+}
+
+filesDropped(files: FileHandle[]): void {
+  this.files = files;
+}
+
+addPhotos(){
+  const formData = new FormData();
+
+  if (this.files) {
+    this.spinner.show();
+    this.files.forEach((element ,i ) => {
+        console.log(element);
+       formData.append('file', element+"");
+       this.productService.addProductImgs(this.addedProductId , formData).subscribe(val => {
+         
+        if (i == this.files.length) {
+          this.spinner.hide();
+        }
+       })
+
+        
+      });
+  }
+}
 }
  

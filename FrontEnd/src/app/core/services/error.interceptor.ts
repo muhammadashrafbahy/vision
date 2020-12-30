@@ -3,11 +3,17 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthenticationService } from './authentication.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthenticationService) { }
+    constructor(private authenticationService: AuthenticationService,
+            private spinner: NgxSpinnerService,
+            private toastr: ToastrService,
+
+        ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
@@ -17,7 +23,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 location.reload(true);
             }
 
-            const error = err.error.message || err.statusText;
+            const error = err.error.apiError.errorMessage;
+            this.spinner.hide();
+            this.toastr.error(error,'Vision Error');
+            
             console.log(error + 'from intercept');
             
             return throwError(error);

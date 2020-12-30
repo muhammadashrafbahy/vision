@@ -11,19 +11,18 @@ export class AppInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add auth header with jwt if user is logged in and request is to the api url
-        const currentUser = localStorage.getItem('user');
+        const currentUser = localStorage.getItem('loggedUser');
         const isApiUrl = request.url.startsWith(environment.SERVER_URL);
-        const isLogin = request.url.indexOf('oauth/token') > -1;
-        if ( isApiUrl && ! isLogin) {
-        alert(isLogin)
+        const isLogin = request.url.indexOf('vision/login') > -1;
+        const isRegister = request.url.indexOf('register') > -1;
 
-            // request = request.clone({
-            //     setHeaders: {
-            //         Authorization: `basic`,
-            //         Username:environment.API_USERNAME,
-            //         Password:environment.API_PASSWORD
-            //     }
-            // });
+        if ( (isApiUrl && ! isLogin) && (isApiUrl && ! isRegister) ) {
+
+            request = request.clone({
+                setHeaders: {
+                  authorization:'Bearer ' + JSON.parse(currentUser).token
+                }
+            });
         }
         
         // else if(request.url.indexOf('oauth/token') > -1  && isApiUrl){

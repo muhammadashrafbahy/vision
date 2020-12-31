@@ -1,5 +1,4 @@
-export class FuncModel {
-
+export class Functionality {
     id: number;
     functionality: string;
 }

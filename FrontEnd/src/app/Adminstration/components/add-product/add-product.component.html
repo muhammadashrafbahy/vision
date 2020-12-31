@@ -8,7 +8,7 @@
           <div class="allCatogary">
               <div class="row">
                   <div class="col-md-6">
-                    <div class="CategorayContainer">
+                    <div class="CategorayContainer" (click)="showNextStep($event,'getBrands',0)">
                           <div class="categoaryImage">
                               <img src="assets/img/Electrical_devices.jpg" alt="Electrical devices">
                           </div>  
@@ -20,7 +20,7 @@
                   </div>
 
                   <div class="col-md-6">
-                      <div class="CategorayContainer">
+                      <div class="CategorayContainer" (click)="showNextStep($event,'getBrands',1)">
                         <div class="categoaryImage">
                             <img src="assets/img/Houseware.jpg" alt="Electrical devices">
                         </div>
@@ -43,7 +43,7 @@
               </div>
               <div class="row allBrands">
     
-              <div class="col-md-2 brandContainer">
+              <div class="col-md-2 brandContainer" (click)="showNextStep()">
                     <div class="brnadImage">
                         
                         <img src="assets/img/Brands/download.png" alt="brandName">
@@ -68,7 +68,7 @@
             
 
             <div class="m-3">
-                <div>
+                <div style="padding: 0 40px;">
                     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
                         <div class="row">
 
@@ -81,49 +81,34 @@
                         </div>
                         <div class="form-group col-md-6 col-12">
                             <label>{{'Product.price' | translate}}</label>
-                            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                <div *ngIf="f.email.errors.required">{{'error.required' | translate}}</div>
-                                <div *ngIf="f.email.errors.email">
-                                    {{'error.validEmail' | translate}}
+                            <input type="text" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+                            <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                <div *ngIf="f.price.errors.required">{{'error.required' | translate}}</div>
+                                <div *ngIf="f.price.errors.pattern">
+                                    {{'error.validPrice' | translate}}
                                     
             
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="logos form-group">
-                        <label style="display: block;">{{ 'Brand.logo' | translate }}</label>
-                          <!-- <input type="file" >  -->
-                          <label class="custom-file-upload">
-                           <input type="file" name="logo" class="form-control"/>
-                           <span class="browse btn main-button">
-                             
-                             {{ 'browse' | translate }}
-                           </span>
-                           
-                       </label>
-                       
-                           
-                      </div>
-
-            
-                            <div class="form-group">
+                     
+                        <div class="form-group">
                                 <label>{{'Brand.desc' | translate}}</label>
-                                <textarea class="form-control" rows="4"></textarea>
-                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                    <div *ngIf="f.password.errors.required">Password is required</div>
-                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                                <textarea class="form-control"  formControlName="desc" rows="4"  [ngClass]="{ 'is-invalid': submitted && f.desc.errors }"></textarea>
+                                <div *ngIf="submitted && f.desc.errors" class="invalid-feedback" >
+                                    <div *ngIf="f.desc.errors.required">
+                                        {{ 'error.required' | translate}}
+                                    </div>
                                 </div>
 
                         </div>
-            
                         <div class="text-center">
                             
-                            <button class="btn btn-primary main-button">{{'Register.Register' | translate}}</button>
+                            <button class="btn btn-primary main-button">{{'add' | translate}}</button>
                             <!-- <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button> -->
                         </div>
-                    </form>
+                </form>
                 </div>
             </div>
             
@@ -131,6 +116,51 @@
         
       
       
+
+        <ng-wizard-step [title]= "step4Title" >
+            
+
+            <div class="m-3">
+                <div style="padding: 0 40px;">
+                   
+
+                    <div *ngIf="!files.length" class="col-12 rmpm dropzone" appDrag (files)="filesDropped($event)">
+                        <div class="text-wrapper">
+                            <div class="centered">Drop your file here!</div>
+                        </div>
+                    </div>
+
+                    
+                    <!--droped image preview-->
+                    <div class="row">
+                     <div class="col-3" *ngFor="let file of files">
+
+                            <img *ngIf="file" [src]="file.url" 
+                                width="100%"
+                                height="200px">
+                    </div>
+
+                    <!-- to be done add new Image without lose others -->
+                    <!-- <div *ngIf="files.length" class="col-3 rmpm dropzone mini" appDrag [currentFile]="files" (files)="filesDropped($event)">
+                        <div class="text-wrapper">
+                            <div class="centered">Drop your file here!</div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="text-center mt-5">
+                            
+                    <button class="btn btn-primary main-button" (click)="addPhotos()">{{'addPhotos' | translate}}</button>
+                </div>
+
+                </div>
+            </div>
+            
+        </ng-wizard-step>
+        
+        <ngx-spinner [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+        </ngx-spinner>
+
       </ng-wizard>
     </div>
       

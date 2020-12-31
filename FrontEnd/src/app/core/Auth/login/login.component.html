@@ -5,7 +5,7 @@
 
     
     <div class="mail">
-        <input [(ngModel)]="model.email" #email="ngModel" required type="email" name="mail" >
+        <input [(ngModel)]="model.userName" #email="ngModel" required type="text" name="userName" >
         <label>{{ 'Login.MailOrUsername' | translate }}</label>
             <!-- <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
                 <div *ngIf="lastName.errors.required">Last Name is required</div>
@@ -41,4 +41,8 @@
                  </button>
  </div>
 </div>
+
+<ngx-spinner [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+</ngx-spinner>
+
 </div>

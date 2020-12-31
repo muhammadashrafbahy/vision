@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @JsonPropertyOrder({ "fullName   ", "userName", "password",
-        "image", "privilegeN", "userEmail"})
+        "images", "privilegeN", "userEmail"})
 
 public class user {
     public user() { super();    }
@@ -17,7 +17,7 @@ public class user {
     public user(@JsonProperty("fullName")String fullName,
                 @JsonProperty("userName")String userName,
                 @JsonProperty("password") String password,
-                @JsonProperty("image")String image,
+                @JsonProperty("images")String image,
                 @JsonProperty("privilegeN")int privilegeN,
                 @JsonProperty("userEmail")String userEmail) {
         this.fullName = fullName;

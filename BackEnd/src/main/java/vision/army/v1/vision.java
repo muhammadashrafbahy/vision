@@ -1,5 +1,6 @@
 package vision.army.v1;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,12 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import vision.army.service.image.imageService;
 import vision.army.v1.ApiResource.*;
 import vision.army.entity.*;
 import vision.army.exception.*;
 import vision.army.service.*;
 import io.swagger.annotations.*;
+import vision.army.service.image.imageService;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -36,6 +40,7 @@ public class vision {
     private  productImageService productImageService;
     private productService productService;
     private resaleService resaleService;
+    private imageService imageService = new imageService();
 
     public vision(userService userService, brandService brandService,cartService cartService,
                   clientLocationService clientLocationService,clientService clientService,
@@ -111,72 +116,85 @@ public class vision {
                 .replacePath("/vision/product")
                 .path("/" + product.getProductID())
                 .buildAndExpand().toUri();
-
+    
         return  ResponseEntity.created(location).contentType(MediaType.APPLICATION_JSON).build();
 
     }
 
     @Transactional
     @ApiOperation("get all products ")
-    @GetMapping(value = "/product",produces = MediaType.APPLICATION_JSON_VALUE)
-    public productsResources getAllProducts(){
-        return new productsResources(this.productService.getAllProducts());
+    @GetMapping(value = "/product/{pageNo}/{pageSize}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public productsResources getAllProducts(@PathVariable("pageNo")int pageNo ,
+                                            @PathVariable("pageSize") int pageSize){
+        return new productsResources(this.productService.getAllProducts(pageNo,pageSize),pageNo,pageSize);
 
     }
 
     @Transactional
     @ApiOperation("get all most sales products ")
-    @GetMapping(value = "/product/mostSales",produces = MediaType.APPLICATION_JSON_VALUE)
-    public productsResources getAllMostSalesProducts(){
-        return new productsResources(this.productService.getAllMostSalesProduct());
+    @GetMapping(value = "/product/mostSales/{pageNo}/{pageSize}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public productsResources getAllMostSalesProducts(@PathVariable("pageNo")int pageNo ,
+                                                     @PathVariable("pageSize") int pageSize){
+        return new productsResources(this.productService.getAllMostSalesProduct(pageNo,pageSize),pageNo,pageSize);
 
     }
 
     @Transactional
     @ApiOperation("get all most rated products ")
-    @GetMapping(value = "/product/mostRated",produces = MediaType.APPLICATION_JSON_VALUE)
-    public productsResources getAllMostRatedProducts(){
-        return new productsResources(this.productService.getAllMostRatedProduct());
+    @GetMapping(value = "/product/mostRated/{pageNo}/{pageSize}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public productsResources getAllMostRatedProducts(@PathVariable("pageNo")int pageNo ,
+                                                     @PathVariable("pageSize") int pageSize){
+        return new productsResources(this.productService.getAllMostRatedProduct(pageNo,pageSize),pageNo,pageSize);
 
     }
 
     @Transactional
     @ApiOperation("get all products by brandID ")
-    @GetMapping(value = "/product/brand/{brandID}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public productsResources getAllProductsByBrandID(@PathVariable("brandID") int brandID){
-        return new productsResources(this.productService.getAllProductsByBrand(brandID));
+    @GetMapping(value = "/product/brand/{brandID}/{pageNo}/{pageSize}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public productsResources getAllProductsByBrandID(@PathVariable("brandID") int brandID
+                                                    ,@PathVariable("pageNo")int pageNo
+                                                    ,@PathVariable("pageSize") int pageSize){
+        return new productsResources(this.productService.getAllProductsByBrand(brandID,pageNo,pageSize),pageNo,pageSize);
 
     }
 
     @Transactional
     @ApiOperation("get all products by product type ID ")
-    @GetMapping(value = "/product/prodType/{prodTypeID}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public productsResources getAllProductsByProdTypeID(@PathVariable("prodTypeID") int prodTypeID){
-        return new productsResources(this.productService.getAllProductsByProductType(prodTypeID));
+    @GetMapping(value = "/product/prodType/{prodTypeID}/{pageNo}/{pageSize}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public productsResources getAllProductsByProdTypeID(@PathVariable("prodTypeID") int prodTypeID
+                                                        ,@PathVariable("pageNo")int pageNo ,
+                                                        @PathVariable("pageSize") int pageSize){
+        return new productsResources(this.productService.getAllProductsByProductType(prodTypeID,pageNo,pageSize),pageNo,pageSize);
 
     }
 
     @Transactional
     @ApiOperation("get all products by product type main ID ")
-    @GetMapping(value = "/product/prodTypeMain/{prodTypeID}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public productsResources getAllProductsByProdTypeMainID(@PathVariable("prodTypeID") int prodTypeID){
-        return new productsResources(this.productService.getAllProductsByProductTypeMain(prodTypeID));
+    @GetMapping(value = "/product/prodTypeMain/{prodTypeID}/{pageNo}/{pageSize}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public productsResources getAllProductsByProdTypeMainID(@PathVariable("prodTypeID") int prodTypeID
+                                                            ,@PathVariable("pageNo")int pageNo ,
+                                                            @PathVariable("pageSize") int pageSize){
+        return new productsResources(this.productService.getAllProductsByProductTypeMain(prodTypeID,pageNo,pageSize),pageNo,pageSize);
 
     }
 
     @Transactional
     @ApiOperation("get all products by name ")
-    @GetMapping(value = "/product/prodName/{prodName}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public productsResources getAllProductsByProdTypeMainID(@PathVariable("prodName") String prodName){
-        return new productsResources(this.productService.getAllProductsByName(prodName));
+    @GetMapping(value = "/product/prodName/{prodName}/{pageNo}/{pageSize}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public productsResources getAllProductsByProdName(@PathVariable("prodName") String prodName,
+                                                      @PathVariable("pageNo")int pageNo ,
+                                                      @PathVariable("pageSize") int pageSize){
+        return new productsResources(this.productService.getAllProductsByName(prodName,pageNo,pageSize),pageNo,pageSize);
 
     }
 
     @Transactional
     @ApiOperation("get all products by price ")
-    @GetMapping(value = "/product/price/{price1}/{price2}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public productsResources getAllProductsByPrice(@PathVariable("price1") int price1 ,@PathVariable("price2") int price2){
-        return new productsResources(this.productService.getAllProductsByPriceRang(price1,price2));
+    @GetMapping(value = "/product/price/{price1}/{price2}/{pageNo}/{pageSize}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public productsResources getAllProductsByPrice(@PathVariable("price1") int price1
+                        ,@PathVariable("price2") int price2,@PathVariable("pageNo")int pageNo ,
+                                                   @PathVariable("pageSize") int pageSize){
+        return new productsResources(this.productService.getAllProductsByPriceRang(price1,price2,pageNo,pageSize),pageNo,pageSize);
 
     }
 
@@ -225,10 +243,12 @@ public class vision {
         return ResponseEntity.created(location).contentType(MediaType.APPLICATION_JSON).build();
 
     }
+
+
         ///////// productImages \\\\\\\\\
     @Transactional
     @ApiOperation("get all images of a product ")
-    @GetMapping(value = "/product/{prodID}/prodImages",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/product/{prodID}/prodImages")
     public List<productImage> getAllImagesForProduct(@PathVariable("prodID") int prodID){
         return this.productImageService.getProductImageForProduct(prodID);
 
@@ -241,13 +261,27 @@ public class vision {
         return this.productImageService.getProductImageByID(prodImageID);
 
     }
-
+    //    public ResponseEntity createAnewBrand( @RequestParam("brandJSON") String brandJSON , @RequestParam("file") MultipartFile file ) throws Exception {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        brand brand = objectMapper.readValue(brandJSON, brand.class);
+//
+//        this.brandService.createBrand(brand);
+//        brand.setLogo(""+brand.getBrandID());
+//        this.brandService.updateBrand(brand.getBrandID(),brand);
+//        this.imageService.writeToFile(file,brand);
     @Transactional
     @ApiOperation(value = "add new images for a product")
-    @PostMapping(value = "/product/{prodID}/prodImages", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createNewProductImage(@PathVariable("prodID") int prodID ,@Valid @RequestBody productImage productImage ){
-        this.productImageService.createAnProductImageForProduct(prodID,productImage);
+    @PostMapping(value = "/product/{prodID}/prodImages" )
+    public ResponseEntity createNewProductImage(@PathVariable("prodID") int prodID
+            , @RequestParam("prodImageJSON") String prodImageJSON
+            , @RequestParam("file") MultipartFile file )throws Exception{
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        productImage productImage = objectMapper.readValue(prodImageJSON, productImage.class);
+        this.productImageService.createAnProductImageForProduct(prodID,productImage);
+        productImage.setImage(""+productImage.getPrdImID());
+        this.productImageService.updateProductImage(productImage.getPrdImID(), productImage);
+        this.imageService.writeToFile(file,productImage);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequestUri()
                 .replacePath("/vision/product/prodImages")
@@ -274,19 +308,7 @@ public class vision {
         return this.ordersService.checkIfProductInorders(prodID);
     }
 ///////////////////////////////////////          CLIENT                \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    @Transactional
-    @ApiOperation("create a new client")
-    @PostMapping(value = "/client",produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createAnewClient(@Valid @RequestBody client client) {
-        this.clientService.createAnClient(client);
-        URI location =ServletUriComponentsBuilder
-                        .fromCurrentRequestUri()
-                        .replacePath("/vision/client")
-                        .path("/"+client.getClientID())
-                        .buildAndExpand().toUri();
-        return ResponseEntity.created(location).contentType(MediaType.APPLICATION_JSON).build();
 
-    }
 
     @Transactional
     @ApiOperation("update client details according to given id")
@@ -739,9 +761,15 @@ public class vision {
     //////////////////////////////////////////     BRAND      \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     @Transactional
     @ApiOperation("create a new brand")
-    @PostMapping(value = "/brand",produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createAnewBrand(@Valid @RequestBody brand brand) {
+    @PostMapping(value = "/brand"  )
+    public ResponseEntity createAnewBrand( @RequestParam("brandJSON") String brandJSON , @RequestParam("file") MultipartFile file ) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        brand brand = objectMapper.readValue(brandJSON, brand.class);
+
         this.brandService.createBrand(brand);
+        brand.setLogo(""+brand.getBrandID());
+        this.brandService.updateBrand(brand.getBrandID(),brand);
+        this.imageService.writeToFile(file,brand);
         URI location =ServletUriComponentsBuilder
                 .fromCurrentRequestUri()
                 .replacePath("/vision/brand")

@@ -35,6 +35,7 @@ public class clientService {
         user.setPassword(newClient.getClientPassword());
         user.setUserEmail(newClient.getClientEmail());
         user.setImage(newClient.getClientImage());
+        user.setPrivilegeN(2);
         this.userService.createAnUser(user);
         this.clientRepository.save(newClient);
         }

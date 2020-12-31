@@ -2,6 +2,8 @@ package vision.army.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -59,22 +61,25 @@ public class productService {
      * list of all products
      * @return list of all products
      */
-    public List<product> getAllProducts() {
-        return this.productRepository.findAll();
+    public List<product> getAllProducts(int pageNo , int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.productRepository.findAll(pageable).toList();
     }
     /**
      * list of  all most sales products
      * @return list of all products
      */
-    public List<product> getAllMostSalesProduct() {
-        return this.productRepository.findAllBySalesNoIsNotNullOrderBySalesNoDesc();
+    public List<product> getAllMostSalesProduct(int pageNo , int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.productRepository.findAllBySalesNoIsNotNullOrderBySalesNoDesc(pageable);
     }
     /**
      * list of  all most rated products
      * @return list of all products
      */
-    public List<product> getAllMostRatedProduct() {
-        return this.productRepository.findAllBySalesNoIsNotNullOrderBySalesNoDesc();
+    public List<product> getAllMostRatedProduct(int pageNo , int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.productRepository.findAllBySalesNoIsNotNullOrderBySalesNoDesc(pageable);
     }
     /**
      * get product data from the database according to given id
@@ -89,32 +94,36 @@ public class productService {
      * @param  brandID the ID of the brand
      * @return list of all products
      */
-    public List<product> getAllProductsByBrand(int brandID) {
-        return this.productRepository.findAllByBrandID(brandID);
+    public List<product> getAllProductsByBrand(int brandID,int pageNo , int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.productRepository.findAllByBrandID(brandID,pageable);
     }
     /**
      * list of all products according to product type id
      * @param  prdTypeID the ID of the product type
      * @return list of all products
      */
-    public List<product> getAllProductsByProductType(int prdTypeID) {
-        return this.productRepository.findAllByPrdTypeID(prdTypeID);
+    public List<product> getAllProductsByProductType(int prdTypeID,int pageNo , int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.productRepository.findAllByPrdTypeID(prdTypeID,pageable);
     }
     /**
      * list of all products according to product type main id
      * @param  prdTypeMainID the ID of the product type
      * @return list of all products
      */
-    public List<product> getAllProductsByProductTypeMain(int prdTypeMainID) {
-        return this.productRepository.findAllByPrdTypeMainID(prdTypeMainID);
+    public List<product> getAllProductsByProductTypeMain(int prdTypeMainID,int pageNo , int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.productRepository.findAllByPrdTypeMainID(prdTypeMainID,pageable);
     }
     /**
      * list of all products according to product name
      * @param  prodName the name of the product
      * @return list of all products
      */
-    public List<product> getAllProductsByName(String prodName) {
-        return this.productRepository.findAllByProdNameLike(prodName);
+    public List<product> getAllProductsByName(String prodName,int pageNo , int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.productRepository.findAllByProdNameLike(prodName,pageable);
     }
 
     /**
@@ -123,7 +132,8 @@ public class productService {
      * @param  secondPrice the price to
      * @return list of all products
      */
-    public List<product> getAllProductsByPriceRang(int firstPrice , int  secondPrice) {
-        return this.productRepository.findALlByProdPriceBetween( firstPrice, secondPrice);
+    public List<product> getAllProductsByPriceRang(int firstPrice , int  secondPrice,int pageNo , int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.productRepository.findALlByProdPriceBetween( firstPrice, secondPrice,pageable);
     }
 }

@@ -1,5 +1,6 @@
 package vision.army.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -179,7 +180,7 @@ public class product {
     public void setPrdTypeMainID(int prdTypeMainID) {
         this.prdTypeMainID = prdTypeMainID;
     }
-
+    @JsonIgnore
     public List<productImage> getProductImages() {
         return AproductImages;
     }

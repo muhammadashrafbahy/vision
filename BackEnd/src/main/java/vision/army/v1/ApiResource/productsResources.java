@@ -10,10 +10,11 @@ import java.util.List;
 public class productsResources  extends RepresentationModel {
     private List<product> productList ;
 
-    public productsResources(List<product> productList) {
+    public productsResources(List<product> productList, int pageNo , int pageSize) {
         this.productList = productList;
 
-        this.add(ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(vision.class).getAllProducts())
+        this.add(ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(vision.class)
+                .getAllProducts(pageNo,pageSize))
                 .withSelfRel());
     }
 

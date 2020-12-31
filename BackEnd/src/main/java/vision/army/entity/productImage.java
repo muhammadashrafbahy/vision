@@ -8,12 +8,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@JsonPropertyOrder({ "productID", "image"})
+@JsonPropertyOrder({ "productID", "images"})
 public class productImage {
     public productImage() {super();    }
 
     public productImage(@JsonProperty("productID")int productID,
-                        @JsonProperty("image")String image) {
+                        @JsonProperty("images")String image) {
         this.productID = productID;
         this.image = image;
     }
@@ -26,7 +26,7 @@ public class productImage {
     @Column( nullable = false)
     private int productID ;
 
-    @Column( nullable = false)
+
     private String image ;
 
     public int getPrdImID() {

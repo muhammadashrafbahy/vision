@@ -1,8 +1,10 @@
 package vision.army.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+//import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -149,6 +151,7 @@ public class client {
         this.phone = phone;
     }
 
+    @JsonIgnore
     public List<clientLocation> getAclient_location() {
         return Aclient_location;
     }
@@ -157,6 +160,7 @@ public class client {
         Aclient_location = aclient_location;
     }
 
+    @JsonIgnore
     public List<cart> getAclient_cart() {
         return Aclient_cart;
     }
@@ -165,6 +169,7 @@ public class client {
         Aclient_cart = aclient_cart;
     }
 
+    @JsonIgnore
     public List<resale> getRclient_resale() {
         return Rclient_resale;
     }
@@ -173,6 +178,7 @@ public class client {
         Rclient_resale = rclient_resale;
     }
 
+    @JsonIgnore
     public List<favourite> getFclient_favourite() {
         return Fclient_favourite;
     }
@@ -181,6 +187,7 @@ public class client {
         Fclient_favourite = fclient_favourite;
     }
 
+    @JsonIgnore
     public List<orders> getOrclient_orders() {
         return Orclient_orders;
     }

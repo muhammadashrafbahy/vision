@@ -55,12 +55,15 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
                 .refreshTokenValiditySeconds(refreshTokenValiditySeconds)
                 .authorizedGrantTypes(authorizedGrantTypes)
                 .scopes("read", "write")
-                .resourceIds("api");
+                .resourceIds("vision");
     }
 
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
+                // Here you can override the default endpoints mappings
+                .pathMapping("/oauth/authorize", "/vision/authorize")
+                .pathMapping("/oauth/token", "/vision/login")
                 .accessTokenConverter(accessTokenConverter())
                 .userDetailsService(userService)
                 .authenticationManager(authenticationManager);

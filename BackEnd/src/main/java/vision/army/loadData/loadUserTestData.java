@@ -1,8 +1,6 @@
 package vision.army.loadData;
 
-import vision.army.reprositery.*;
 import vision.army.entity.*;
-import vision.army.exception.*;
 import vision.army.service.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
@@ -27,11 +24,13 @@ public class loadUserTestData {
     private final productService productService ;
     private final clientService clientService;
     private final ObjectMapper objectMapper ;
+    private final brandService brandService;
 
-    public loadUserTestData(userService userService ,productService productService ,clientService clientService) {
+    public loadUserTestData( brandService brandService,userService userService ,productService productService ,clientService clientService) {
         this.clientService= clientService;
         this.userService = userService;
         this.productService = productService;
+        this. brandService= brandService;
         this.objectMapper =new ObjectMapper();
 
     }
@@ -136,6 +135,7 @@ public class loadUserTestData {
 
     private void clearData() {
         try {
+            this.brandService.deleteAllBrands();
             this.userService.deleteALlUsers();
             this.productService.deleteAllProduct();
             this.clientService.deleteAllClients();
@@ -154,8 +154,8 @@ public class loadUserTestData {
 //        }else{
 
 
-            clearData();
-            load();
+//            clearData();
+//            load();
 //        }
     }
 

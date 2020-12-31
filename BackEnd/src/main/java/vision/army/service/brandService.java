@@ -67,4 +67,6 @@ public class brandService  {
         this.brandRepository.deleteById(brandID);
     }
 
+    public void deleteAllBrands() {this.brandRepository.deleteAll();
+    }
 }

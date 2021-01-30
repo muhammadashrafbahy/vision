@@ -1,0 +1,4 @@
+FROM openjdk:11
+ADD /target/army-0.0.1-SNAPSHOT.jar army-0.0.1-SNAPSHOT.jar.original
+EXPOSE 8090
+ENTRYPOINT [ "java","-jar","army-0.0.1-SNAPSHOT.jar" ]

@@ -1,12 +1,13 @@
 package vision.army.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
-
+import vision.army.entity.client;
 
 @Entity
 @JsonPropertyOrder({ "state", "deliverPeriod","deliverPrice" ,"deliveredDate" , "productID"
@@ -16,7 +17,7 @@ public class orders {
     public orders() {    super();    }
 // productQuantity
     public orders(@JsonProperty("deliveredDate") Date deliveredDate,
-                  @JsonProperty("state") String state,
+                  @JsonProperty("state") boolean state,
                  @JsonProperty("productID") int productID,
                  @JsonProperty("deliverPeriod")String deliverPeriod,
                  @JsonProperty("deliverPrice")int deliverPrice,
@@ -41,29 +42,30 @@ public class orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ordersID ;
 
-    @Column( nullable = false)
-    private String state ;
+    private boolean state ;
 
-    @Column( nullable = false)
     private int productID ;
 
     private String deliverPeriod;
 
     private int deliverPrice ;
 
-    @Column( nullable = false)
     private Date orderDate ;
 
-    @Column( nullable = false)
     private int productQuantity;
 
-    @Column( nullable = false)
     private int productPrice;
 
-    @Column( nullable = false)
     private int totalPrice;
 
     private Date deliveredDate ;
+
+    @ManyToOne
+    @JsonIgnore
+    private client client;
+
+    @ManyToOne
+    private product product;
 
     public int getOrdersID() {
         return ordersID;
@@ -73,11 +75,11 @@ public class orders {
         this.ordersID = ordersID;
     }
 
-    public String getState() {
+    public boolean isState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(boolean state) {
         this.state = state;
     }
 
@@ -144,6 +146,22 @@ public class orders {
 
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public vision.army.entity.client getClient() {
+        return client;
+    }
+
+    public void setClient(vision.army.entity.client client) {
+        this.client = client;
+    }
+
+    public vision.army.entity.product getProduct() {
+        return product;
+    }
+
+    public void setProduct(vision.army.entity.product product) {
+        this.product = product;
     }
 
     @Override

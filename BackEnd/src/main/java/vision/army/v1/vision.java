@@ -117,7 +117,7 @@ public class vision {
                 .path("/" + product.getProductID())
                 .buildAndExpand().toUri();
     
-        return  ResponseEntity.created(location).contentType(MediaType.APPLICATION_JSON).build();
+        return  ResponseEntity.created(location).contentType(MediaType.APPLICATION_JSON).body(product.getProductID());
 
     }
 
@@ -261,14 +261,7 @@ public class vision {
         return this.productImageService.getProductImageByID(prodImageID);
 
     }
-    //    public ResponseEntity createAnewBrand( @RequestParam("brandJSON") String brandJSON , @RequestParam("file") MultipartFile file ) throws Exception {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        brand brand = objectMapper.readValue(brandJSON, brand.class);
-//
-//        this.brandService.createBrand(brand);
-//        brand.setLogo(""+brand.getBrandID());
-//        this.brandService.updateBrand(brand.getBrandID(),brand);
-//        this.imageService.writeToFile(file,brand);
+
     @Transactional
     @ApiOperation(value = "add new images for a product")
     @PostMapping(value = "/product/{prodID}/prodImages" )
@@ -376,8 +369,8 @@ public class vision {
     @Transactional
     @ApiOperation("get client by phone")
     @GetMapping(value = "/client/phone/{phone}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public clientResource getClientByPhone(@PathVariable("phone") String phone){
-        return new clientResource(this.clientService.getClientByPhone(phone));
+    public clientResources getClientByPhone(@PathVariable("phone") String phone){
+        return new clientResources(this.clientService.getClientByPhone(phone));
 
     }
 
@@ -680,7 +673,7 @@ public class vision {
 
     @Transactional
     @ApiOperation("delete orders for client according to given id")
-    @DeleteMapping(value = "/client/orders/{ordersID}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/orders/{ordersID}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity deleteOrders(@PathVariable("ordersID") int ordersID){
         this.ordersService.deleteOrders(ordersID);
         return ResponseEntity.noContent().build();
@@ -689,13 +682,28 @@ public class vision {
 
     @Transactional
     @ApiOperation("update orders for client according to  ordersID")
-    @PutMapping(value = "/client/orders/{ordersID}",produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/orders/{ordersID}",produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateOrders( @PathVariable("ordersID") int ordersID
             ,@Valid @RequestBody orders orders) {
         this.ordersService.updateOrders(ordersID,orders);
         URI location =ServletUriComponentsBuilder
                 .fromCurrentRequestUri()
-                .replacePath("/vision/client/orders")
+                .replacePath("/vision/orders")
+                .path("/"+ordersID)
+                .buildAndExpand().toUri();
+        return ResponseEntity.created(location).contentType(MediaType.APPLICATION_JSON).build();
+
+    }
+    @Transactional
+    @ApiOperation("update orders by admin for client according to  ordersID")
+    @PutMapping(value = "/orders/confirm/{ordersID}",produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateOrdersState( @PathVariable("ordersID") int ordersID
+            ,@RequestBody orders orders) {
+        this.ordersService.updateOrdersState(ordersID,orders.isState() , orders.getDeliveredDate()
+                , orders.getDeliverPrice(), orders.getTotalPrice());
+        URI location =ServletUriComponentsBuilder
+                .fromCurrentRequestUri()
+                .replacePath("/vision/orders")
                 .path("/"+ordersID)
                 .buildAndExpand().toUri();
         return ResponseEntity.created(location).contentType(MediaType.APPLICATION_JSON).build();
@@ -703,8 +711,8 @@ public class vision {
     }
 
     @Transactional
-    @ApiOperation("get orders for client according to given id")
-    @GetMapping(value = "/client/orders/{ordersID}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation("get orders  according to given id")
+    @GetMapping(value = "orders/{ordersID}",produces = MediaType.APPLICATION_JSON_VALUE)
     public orders getOrdersByID(@PathVariable("ordersID") int ordersID){
         return this.ordersService.getOrdersByID(ordersID);
     }
@@ -712,40 +720,35 @@ public class vision {
     @Transactional
     @ApiOperation("get orders for client according to deliverState")
     @GetMapping(value = "/client/{clientID}/deliverState/{deliverState}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<orders> getOrdersByDeliverState(@PathVariable("clientID") int clientID,@PathVariable("deliverState") String deliverState){
+    public List<orders> getOrdersByDeliverState(@PathVariable("clientID") int clientID,@PathVariable("deliverState") boolean deliverState){
         return this.ordersService.getOrdersByStateForClient(clientID,deliverState);
     }
 
-
-    //////////////////////////////////////////      ORDERS       \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     @Transactional
     @ApiOperation("get all orders")
     @GetMapping(value = "/orders",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<orders> getAllOrders(){
+    public List<customizedOrder> getAllOrders(){
         return this.ordersService.getAllOrders();
-
     }
 
     @Transactional
     @ApiOperation("get all orders by deliverState")
     @GetMapping(value = "/orders/state/{deliverState}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<orders> getAllOrdersByState(@PathVariable("deliverState") String deliverState){
+    public List<customizedOrder> getAllOrdersByState(@PathVariable("deliverState") boolean deliverState){
         return this.ordersService.getOrdersByState(deliverState);
-
     }
 
     @Transactional
     @ApiOperation("get all orders by date")
     @GetMapping(value = "/orders/date/{date}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<orders> getAllOrdersByDate(@PathVariable("date") Date date){
+    public List<customizedOrder> getAllOrdersByDate(@PathVariable("date") Date date){
         return this.ordersService.getOrdersByOrderDate(date);
-
     }
 
     @Transactional
     @ApiOperation("get all orders by deliverDate")
     @GetMapping(value = "/orders/deliverDate/{deliverDate}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<orders> getAllOrdersByDeliverDate(@PathVariable("deliverDate") Date deliverDate){
+    public List<customizedOrder> getAllOrdersByDeliverDate(@PathVariable("deliverDate") Date deliverDate){
         return this.ordersService.getOrdersByDeliveredDate(deliverDate);
 
     }
@@ -753,7 +756,7 @@ public class vision {
     @Transactional
     @ApiOperation("get all orders by price ")
     @GetMapping(value = "/orders/price/{price1}/{price2}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<orders> getAllOrdersByDeliverDate(@PathVariable("price1") int  price1 ,@PathVariable("price2") int  price2){
+    public List<customizedOrder> getAllOrdersByPriceRange(@PathVariable("price1") int  price1 ,@PathVariable("price2") int  price2){
         return this.ordersService.getOrdersByPriceRang(price1,price2);
 
     }

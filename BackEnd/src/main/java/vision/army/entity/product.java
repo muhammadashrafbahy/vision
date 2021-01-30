@@ -3,6 +3,8 @@ package vision.army.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -87,10 +89,19 @@ public class product {
 
     private int saving ;
 
-        @OneToMany(cascade = CascadeType.ALL, targetEntity = productImage.class)
+        @OneToMany(cascade = CascadeType.REMOVE, targetEntity = productImage.class)
+//        @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(name = "Aproduct_images" ,joinColumns = {@JoinColumn(name = "product_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "image_ID")} )
+        @JsonIgnore
     private List<productImage> AproductImages;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, targetEntity = orders.class)
+//    @OnDelete(action = OnDeleteAction.CASCADE)ALL, orphanRemoval=true
+    @JoinTable(name = "pr_or" ,joinColumns = {@JoinColumn(name = "product_ID")}
+            ,inverseJoinColumns ={@JoinColumn(name   = "order_ID")} )
+    @JsonIgnore
+    private List<orders> ORproductOrders;
 
 
     public int getProductID() {
@@ -212,8 +223,14 @@ public class product {
     public void setSaving(int saving) {
         this.saving = saving;
     }
+    @JsonIgnore
+    public List<orders> getORproductOrders() {
+        return ORproductOrders;
+    }
 
-
+    public void setORproductOrders(List<orders> ORproductOrders) {
+        this.ORproductOrders = ORproductOrders;
+    }
 
     @Override
     public boolean equals(Object o) {

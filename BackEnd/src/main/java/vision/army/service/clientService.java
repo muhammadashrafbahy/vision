@@ -117,9 +117,8 @@ public class clientService {
      * @param  clientPhone the phone of the client
      * @return client the payload of the resulted client
      */
-    public client getClientByPhone(String  clientPhone ){
-        return this.clientRepository.findByPhone(clientPhone);
-
+    public List<client> getClientByPhone(String  clientPhone ){
+        return this.clientRepository.findByPhoneContaining(clientPhone);
     }
 
     /**
@@ -129,7 +128,6 @@ public class clientService {
      */
     public List<client> getClientsByGender(String  gender ){
         return this.clientRepository.findAllByGender(gender);
-
     }
 
 

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 //import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
@@ -57,31 +59,36 @@ public class client {
 
     private Date birthDate ;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = clientLocation.class)
+    @OneToMany(cascade = CascadeType.REMOVE, targetEntity = clientLocation.class)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(name = "Aclient_location" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "location_ID")} )
     @JsonIgnore
     private List<clientLocation> Aclient_location;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = cart.class)
+    @OneToMany(cascade = CascadeType.REMOVE, targetEntity = cart.class)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(name = "Cclient_cart" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "cart_ID")} )
     @JsonIgnore
     private List<cart> Aclient_cart;
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = resale.class)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(name = "Rclient_resale" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "resale_ID")} )
     @JsonIgnore
     private List<resale> Rclient_resale;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = favourite.class)
+    @OneToMany(cascade = CascadeType.REMOVE, targetEntity = favourite.class)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(name = "Fclient_favourite" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "favourite_ID")} )
     @JsonIgnore
     private List<favourite> Fclient_favourite;
 
-    @OneToMany(cascade = CascadeType.REMOVE, targetEntity = orders.class)
+    @OneToMany(cascade = CascadeType.ALL , orphanRemoval=true, targetEntity = orders.class)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(name = "ORclientorders" ,joinColumns = {@JoinColumn(name = "client_ID")}
             ,inverseJoinColumns ={@JoinColumn(name   = "orders_ID")} )
     @JsonIgnore

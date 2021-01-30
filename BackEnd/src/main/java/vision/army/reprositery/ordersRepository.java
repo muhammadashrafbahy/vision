@@ -11,6 +11,7 @@ public interface ordersRepository extends JpaRepository<orders, Integer > {
     orders findByProductID (int productID);
     List<orders> findAllByDeliveredDate (Date deliveredDate);
     List<orders> findAllByOrderDate (Date orderDate);
-    List<orders> findAllByState (String State);
+    List<orders> findAllByState (boolean State);
     List<orders> findAllByDeliverPriceBetween (int price1 , int price2);
+
 }
